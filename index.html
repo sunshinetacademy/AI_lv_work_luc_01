@@ -4,1603 +4,586 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المحاضرة الأولى — فهم الـ AI صح | Sunshine T Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --primary-dark: #1a2847;
-  --primary-blue: #2c3e50;
-  --primary-accent: #c9a961;
-  --accent-light: #e6c887;
-  --bg-light: #f8f9fa;
-  --bg-cream: #fdfaf3;
-  --text-main: #1a1a1a;
-  --text-muted: #6c757d;
-  --success: #27ae60;
-  --danger: #c0392b;
-  --warning: #e67e22;
-  --info: #3498db;
-  --border: #e8e3d3;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--cream:#fdfaf3;--dark:#1a2847;--blue:#2c3e50;--gold:#c9a961;--gold-light:#f5e6c4;
+--bg:#f8f9fa;--text:#1a1a1a;--muted:#6c757d;--success:#27ae60;--danger:#c0392b;
+--warning:#e67e22;--info:#3498db;--border:#e8e3d3;--code-bg:#1a2847;--code-text:#e6c887;
 }
-body {
-  font-family: 'Tajawal', sans-serif;
-  background: var(--bg-light);
-  color: var(--text-main);
-  line-height: 1.8;
-  font-size: 17px;
-}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--text);line-height:1.85;font-size:17px}
 
-/* ============ COVER SECTION ============ */
-.cover {
-  background: linear-gradient(135deg, #1a2847 0%, #2c3e50 60%, #3d5475 100%);
-  color: white;
-  padding: 80px 40px 60px;
-  position: relative;
-  overflow: hidden;
-}
-.cover::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(201,169,97,0.15), transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(201,169,97,0.1), transparent 50%);
-}
-.cover-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-.cover-meta {
-  display: flex; align-items: center; gap: 20px;
-  font-size: 14px; color: var(--accent-light);
-  margin-bottom: 40px; flex-wrap: wrap;
-}
-.cover-meta .dot { width: 4px; height: 4px; background: var(--primary-accent); border-radius: 50%; }
-.cover-tag {
-  display: inline-block; background: rgba(201,169,97,0.15);
-  color: var(--accent-light); padding: 6px 16px;
-  border-radius: 20px; font-size: 13px; font-weight: 700;
-  border: 1px solid rgba(201,169,97,0.3);
-  margin-bottom: 20px;
-}
-.cover h1 {
-  font-size: 56px; font-weight: 900; line-height: 1.2;
-  margin-bottom: 20px; max-width: 900px;
-}
-.cover h1 .accent { color: var(--primary-accent); }
-.cover-subtitle {
-  font-size: 22px; color: rgba(255,255,255,0.85);
-  max-width: 800px; line-height: 1.6; margin-bottom: 40px;
-}
-.cover-info-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px; margin-bottom: 40px; max-width: 900px;
-}
-.info-card-mini {
-  background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
-  padding: 16px 20px; border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.info-card-mini .label {
-  font-size: 12px; color: var(--accent-light);
-  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
-}
-.info-card-mini .value { font-size: 16px; font-weight: 700; }
-.toc-preview {
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-  border: 1px solid rgba(201,169,97,0.2);
-  border-radius: 14px; padding: 24px 28px;
-  max-width: 900px;
-}
-.toc-title {
-  font-size: 14px; color: var(--primary-accent);
-  font-weight: 700; margin-bottom: 16px;
-  letter-spacing: 1px; text-transform: uppercase;
-}
-.toc-list {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 8px 24px; list-style: none;
-}
-.toc-list li {
-  font-size: 15px; padding: 8px 0; display: flex; align-items: center; gap: 12px;
-  color: rgba(255,255,255,0.85); cursor: pointer; transition: .3s;
-}
-.toc-list li:hover { color: var(--primary-accent); transform: translateX(-4px); }
-.toc-num {
-  color: var(--primary-accent); font-weight: 900;
-  font-family: 'Amiri', serif; font-size: 18px; min-width: 28px;
-}
+.cover{background:linear-gradient(160deg,#0f1b30 0%,#1a2847 40%,#2c3e50 100%);color:#fff;padding:70px 40px 55px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 15%,rgba(201,169,97,.12),transparent 55%),radial-gradient(ellipse at 25% 85%,rgba(201,169,97,.08),transparent 55%)}
+.cover-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+.cover-badge{display:inline-block;background:rgba(201,169,97,.15);color:var(--gold-light);padding:6px 18px;border-radius:24px;font-size:13px;font-weight:700;border:1px solid rgba(201,169,97,.3);margin-bottom:18px;letter-spacing:.5px}
+.cover h1{font-size:52px;font-weight:900;line-height:1.25;margin-bottom:16px;max-width:850px}
+.cover h1 .hl{color:var(--gold)}
+.cover-sub{font-size:21px;color:rgba(255,255,255,.82);max-width:780px;line-height:1.65;margin-bottom:36px}
+.cover-meta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gold-light);margin-bottom:32px;flex-wrap:wrap}
+.cover-meta .dot{width:4px;height:4px;background:var(--gold);border-radius:50%}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:36px;max-width:850px}
+.mini-card{background:rgba(255,255,255,.07);backdrop-filter:blur(8px);padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.mini-card .lbl{font-size:11px;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.mini-card .val{font-size:15px;font-weight:700}
+.toc-box{background:rgba(255,255,255,.04);border:1px solid rgba(201,169,97,.2);border-radius:14px;padding:22px 26px;max-width:850px}
+.toc-title{font-size:13px;color:var(--gold);font-weight:700;margin-bottom:14px;letter-spacing:1px;text-transform:uppercase}
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 22px;list-style:none}
+.toc-grid li{font-size:14px;padding:7px 0;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.82);cursor:pointer;transition:.3s}
+.toc-grid li:hover{color:var(--gold);transform:translateX(-4px)}
+.toc-n{color:var(--gold);font-weight:900;font-size:16px;min-width:24px}
 
-/* ============ MAIN CONTENT ============ */
-.main-content { max-width: 1000px; margin: 0 auto; padding: 60px 30px; }
-.section {
-  margin-bottom: 80px; scroll-margin-top: 20px;
-  animation: fadeUp .6s ease;
-}
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+.main{max-width:960px;margin:0 auto;padding:55px 28px 20px}
+.sec{margin-bottom:72px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:center;gap:18px;margin-bottom:26px;padding-bottom:18px;border-bottom:2px solid var(--border);position:relative}
+.sec-head::after{content:'';position:absolute;bottom:-2px;right:0;width:72px;height:2px;background:var(--gold)}
+.sec-num{font-size:44px;font-weight:900;color:var(--gold);line-height:1;min-width:72px}
+.sec-head h2{font-size:30px;font-weight:900;color:var(--dark);margin-bottom:4px;line-height:1.3}
+.sec-sub{font-size:15px;color:var(--muted);font-weight:600}
+.intro{font-size:17px;line-height:2;margin-bottom:22px;color:var(--text)}
+.intro strong{color:var(--dark)}
 
-.section-header {
-  display: flex; align-items: center; gap: 20px;
-  margin-bottom: 30px; padding-bottom: 20px;
-  border-bottom: 2px solid var(--border);
-  position: relative;
-}
-.section-header::after {
-  content: ''; position: absolute; bottom: -2px; right: 0;
-  width: 80px; height: 2px; background: var(--primary-accent);
-}
-.section-num {
-  font-family: 'Amiri', serif; font-size: 48px; font-weight: 700;
-  color: var(--primary-accent); line-height: 1; min-width: 80px;
-}
-.section-header-text h2 {
-  font-size: 34px; font-weight: 900; color: var(--primary-dark);
-  margin-bottom: 6px; line-height: 1.3;
-}
-.section-subtitle { font-size: 16px; color: var(--text-muted); font-weight: 500; }
+.golden{background:linear-gradient(135deg,#fdf8ec,#f8edce);border-right:5px solid var(--gold);border-radius:12px;padding:26px 30px;margin:28px 0;position:relative;box-shadow:0 4px 18px rgba(201,169,97,.13)}
+.golden::before{content:'💡 القاعدة الذهبية';position:absolute;top:-13px;right:22px;background:var(--gold);color:#fff;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:900;box-shadow:0 2px 8px rgba(201,169,97,.3)}
+.golden p{font-size:18px;line-height:1.9;color:var(--dark);font-weight:600;margin-top:8px}
 
-.intro-text {
-  font-size: 18px; line-height: 2; margin-bottom: 24px;
-  color: var(--text-main); padding: 10px 0;
-}
-.intro-text strong { color: var(--primary-dark); }
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin:26px 0}
+.card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:24px;transition:.3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--gold);transform:scaleY(0);transition:.3s;transform-origin:bottom}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(26,40,71,.08);border-color:var(--gold)}
+.card:hover::before{transform:scaleY(1)}
+.card-icon{width:48px;height:48px;background:var(--gold-light);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold);margin-bottom:14px}
+.card h4{font-size:17px;color:var(--dark);margin-bottom:8px;font-weight:900}
+.card p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ============ GOLDEN RULE BOX ============ */
-.golden-rule {
-  background: linear-gradient(135deg, #fdf8ec 0%, #f8edce 100%);
-  border-right: 5px solid var(--primary-accent);
-  border-radius: 12px; padding: 28px 32px;
-  margin: 30px 0; position: relative;
-  box-shadow: 0 4px 20px rgba(201,169,97,0.15);
-}
-.golden-rule::before {
-  content: '💡 القاعدة الذهبية';
-  position: absolute; top: -14px; right: 24px;
-  background: var(--primary-accent); color: white;
-  padding: 6px 18px; border-radius: 20px;
-  font-size: 13px; font-weight: 900;
-  box-shadow: 0 2px 8px rgba(201,169,97,0.3);
-}
-.golden-rule p {
-  font-size: 19px; line-height: 1.9; color: var(--primary-dark);
-  font-weight: 500; margin-top: 10px;
-}
+.box{padding:18px 22px;border-radius:10px;margin:22px 0;border-right:4px solid}
+.box h5{font-size:14px;margin-bottom:7px;display:flex;align-items:center;gap:8px;font-weight:900}
+.box p{font-size:15px;line-height:1.8;color:var(--dark)}
+.box-tip{background:#e8f5e9;border-color:var(--success)}.box-tip h5{color:var(--success)}
+.box-warn{background:#fef3e7;border-color:var(--warning)}.box-warn h5{color:var(--warning)}
+.box-danger{background:#fdecea;border-color:var(--danger)}.box-danger h5{color:var(--danger)}
+.box-info{background:#e3f2fd;border-color:var(--info)}.box-info h5{color:var(--info)}
+.box-security{background:#fff3cd;border-color:var(--warning)}.box-security h5{color:var(--warning)}
 
-/* ============ CARDS GRID ============ */
-.cards-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px; margin: 30px 0;
-}
-.use-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: 14px; padding: 26px;
-  transition: .3s; position: relative; overflow: hidden;
-}
-.use-card::before {
-  content: ''; position: absolute; top: 0; right: 0;
-  width: 4px; height: 100%; background: var(--primary-accent);
-  transform: scaleY(0); transition: .3s; transform-origin: bottom;
-}
-.use-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(26,40,71,0.1);
-  border-color: var(--primary-accent);
-}
-.use-card:hover::before { transform: scaleY(1); }
-.use-card-icon {
-  width: 52px; height: 52px; background: var(--bg-cream);
-  border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  font-size: 24px; color: var(--primary-accent); margin-bottom: 16px;
-}
-.use-card h4 {
-  font-size: 18px; color: var(--primary-dark); margin-bottom: 10px; font-weight: 900;
-}
-.use-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+.term{background:#fff;border:1px solid var(--border);border-radius:11px;padding:20px 24px;margin:14px 0;display:flex;gap:18px;align-items:flex-start;transition:.3s}
+.term:hover{border-color:var(--gold);box-shadow:0 5px 16px rgba(201,169,97,.1)}
+.term-n{min-width:150px;font-weight:900;font-size:16px;color:var(--gold)}
+.term-d{flex:1;font-size:15px;line-height:1.8;color:var(--text)}
+.term-d code{background:var(--gold-light);padding:1px 7px;border-radius:4px;color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:13px}
 
-/* ============ TERM BOX ============ */
-.term-box {
-  background: white; border: 1px solid var(--border);
-  border-radius: 12px; padding: 22px 26px; margin: 16px 0;
-  display: flex; gap: 20px; align-items: flex-start;
-  transition: .3s;
-}
-.term-box:hover {
-  border-color: var(--primary-accent);
-  box-shadow: 0 6px 18px rgba(26,40,71,0.08);
-}
-.term-name {
-  min-width: 160px; font-weight: 900; font-size: 17px;
-  color: var(--primary-accent); font-family: 'Tajawal', sans-serif;
-}
-.term-def { flex: 1; font-size: 16px; line-height: 1.8; color: var(--text-main); }
-.term-def code {
-  background: var(--bg-cream); padding: 2px 8px;
-  border-radius: 4px; color: var(--primary-dark);
-  font-family: 'Courier New', monospace; font-size: 14px;
-}
+.tbl{width:100%;border-collapse:collapse;margin:22px 0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.04)}
+.tbl thead{background:linear-gradient(135deg,var(--dark),var(--blue));color:#fff}
+.tbl th{padding:14px 18px;text-align:right;font-weight:900;font-size:14px;letter-spacing:.4px}
+.tbl td{padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;line-height:1.6}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:var(--gold-light)}
 
-/* ============ TIP BOX ============ */
-.tip-box {
-  background: #e8f4f8; border-right: 4px solid var(--info);
-  padding: 20px 24px; border-radius: 10px; margin: 24px 0;
-}
-.tip-box h5 {
-  color: var(--info); font-size: 15px; margin-bottom: 8px;
-  display: flex; align-items: center; gap: 8px; font-weight: 900;
-}
-.tip-box p { font-size: 16px; line-height: 1.8; color: var(--primary-dark); }
+.steps{counter-reset:st;list-style:none;margin:22px 0}
+.steps li{counter-increment:st;padding:16px 18px 16px 0;padding-right:66px;position:relative;background:#fff;margin-bottom:10px;border-radius:10px;border:1px solid var(--border);font-size:15px;line-height:1.8;transition:.3s}
+.steps li:hover{border-color:var(--gold);box-shadow:0 4px 12px rgba(201,169,97,.12)}
+.steps li::before{content:counter(st);position:absolute;right:16px;top:50%;transform:translateY(-50%);width:36px;height:36px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
 
-.warning-box {
-  background: #fef3e7; border-right: 4px solid var(--warning);
-  padding: 20px 24px; border-radius: 10px; margin: 24px 0;
-}
-.warning-box h5 {
-  color: var(--warning); font-size: 15px; margin-bottom: 8px;
-  display: flex; align-items: center; gap: 8px; font-weight: 900;
-}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0}
+.cmp-side{padding:24px;border-radius:12px;border:2px solid;position:relative}
+.cmp-side.ok{background:#f0f9f4;border-color:var(--success)}
+.cmp-side.no{background:#fdf2f2;border-color:var(--danger)}
+.cmp-badge{position:absolute;top:-13px;right:18px;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:900;color:#fff}
+.cmp-side.ok .cmp-badge{background:var(--success)}
+.cmp-side.no .cmp-badge{background:var(--danger)}
+.cmp-side h4{font-size:17px;margin-bottom:14px;margin-top:6px;color:var(--dark);font-weight:900}
+.cmp-side ul{list-style:none}
+.cmp-side li{padding:6px 0 6px 0;padding-right:26px;position:relative;font-size:14px;line-height:1.7}
+.cmp-side.ok li::before{content:'✅';position:absolute;right:0;top:6px}
+.cmp-side.no li::before{content:'❌';position:absolute;right:0;top:6px}
 
-.danger-box {
-  background: #fdecea; border-right: 4px solid var(--danger);
-  padding: 20px 24px; border-radius: 10px; margin: 24px 0;
-}
-.danger-box h5 {
-  color: var(--danger); font-size: 15px; margin-bottom: 8px;
-  display: flex; align-items: center; gap: 8px; font-weight: 900;
-}
+.ex{background:#fff;border:1px solid var(--border);border-radius:13px;padding:24px;margin:22px 0;box-shadow:0 3px 14px rgba(0,0,0,.03)}
+.ex-head{display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:18px;border-bottom:2px dashed var(--border)}
+.ex-tag{background:var(--gold);color:#fff;padding:5px 12px;border-radius:7px;font-weight:900;font-size:13px}
+.ex-head h4{font-size:17px;color:var(--dark);font-weight:900}
+.ex-scene{background:var(--cream);padding:12px 16px;border-radius:8px;margin-bottom:14px;font-size:14px;line-height:1.7}
+.ex-scene strong{color:var(--gold)}
+.ex-result{background:#f0f9f4;border-right:3px solid var(--success);padding:12px 16px;border-radius:8px;margin-top:14px;font-size:14px;line-height:1.7;color:var(--dark)}
 
-/* ============ TABLE ============ */
-.data-table {
-  width: 100%; border-collapse: collapse; margin: 24px 0;
-  background: white; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-.data-table thead {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
-  color: white;
-}
-.data-table th {
-  padding: 16px 20px; text-align: right; font-weight: 900;
-  font-size: 15px; letter-spacing: .5px;
-}
-.data-table td {
-  padding: 14px 20px; border-bottom: 1px solid var(--border);
-  font-size: 15px; line-height: 1.6;
-}
-.data-table tbody tr:last-child td { border-bottom: none; }
-.data-table tbody tr:hover { background: var(--bg-cream); }
-.data-table .tool-logo {
-  display: inline-flex; align-items: center; gap: 8px; font-weight: 700;
-}
+.sandbox{background:var(--code-bg);color:var(--code-text);padding:20px 22px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.9;margin:14px 0;direction:ltr;text-align:left;border-right:4px solid var(--gold);white-space:pre-wrap;position:relative;overflow-x:auto}
+.sandbox .tag{color:#f59e0b;font-weight:700}
+.sandbox .c{color:#ecf0f1}
+.sandbox-copy{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Cairo',sans-serif;transition:.3s}
+.sandbox-copy:hover{background:var(--gold);border-color:var(--gold)}
 
-/* ============ STEPS LIST ============ */
-.steps-list {
-  counter-reset: step; list-style: none; margin: 24px 0;
-}
-.steps-list li {
-  counter-increment: step; padding: 18px 20px 18px 0;
-  padding-right: 70px; position: relative;
-  background: white; margin-bottom: 12px;
-  border-radius: 10px; border: 1px solid var(--border);
-  font-size: 16px; line-height: 1.8;
-  transition: .3s;
-}
-.steps-list li:hover {
-  border-color: var(--primary-accent);
-  box-shadow: 0 4px 12px rgba(201,169,97,0.15);
-}
-.steps-list li::before {
-  content: counter(step);
-  position: absolute; right: 18px; top: 50%;
-  transform: translateY(-50%);
-  width: 38px; height: 38px;
-  background: var(--primary-accent); color: white;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 16px;
-  font-family: 'Amiri', serif;
-}
+.drill{background:linear-gradient(135deg,var(--dark),var(--blue));color:#fff;padding:26px 30px;border-radius:13px;margin:28px 0;position:relative;overflow:hidden}
+.drill::before{content:'';position:absolute;top:-40px;left:-40px;width:130px;height:130px;background:radial-gradient(circle,rgba(201,169,97,.2),transparent)}
+.drill-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:2;flex-wrap:wrap;gap:10px}
+.drill-head h4{font-size:20px;font-weight:900;display:flex;align-items:center;gap:8px}
+.time-badge{background:var(--gold);color:#fff;padding:5px 14px;border-radius:20px;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:5px}
+.drill ol{list-style:decimal;padding-right:22px;position:relative;z-index:2}
+.drill li{padding:5px 0;font-size:15px;line-height:1.8}
 
-/* ============ COMPARISON ============ */
-.compare-box {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px; margin: 24px 0;
-}
-.compare-side {
-  padding: 26px; border-radius: 12px;
-  border: 2px solid; position: relative;
-}
-.compare-side.correct {
-  background: #f0f9f4; border-color: var(--success);
-}
-.compare-side.wrong {
-  background: #fdf2f2; border-color: var(--danger);
-}
-.compare-badge {
-  position: absolute; top: -14px; right: 20px;
-  padding: 6px 16px; border-radius: 20px;
-  font-size: 13px; font-weight: 900; color: white;
-}
-.compare-side.correct .compare-badge { background: var(--success); }
-.compare-side.wrong .compare-badge { background: var(--danger); }
-.compare-side h4 {
-  font-size: 18px; margin-bottom: 16px; margin-top: 8px;
-  color: var(--primary-dark); font-weight: 900;
-}
-.compare-side ul { list-style: none; }
-.compare-side li {
-  padding: 8px 0 8px 0; padding-right: 28px;
-  position: relative; font-size: 15px; line-height: 1.7;
-}
-.compare-side.correct li::before {
-  content: '✅'; position: absolute; right: 0; top: 8px;
-}
-.compare-side.wrong li::before {
-  content: '❌'; position: absolute; right: 0; top: 8px;
-}
+.glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin:22px 0}
+.g-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;transition:.3s}
+.g-item:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 5px 14px rgba(201,169,97,.08)}
+.g-term{color:var(--gold);font-weight:900;font-size:15px;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.g-ar{font-size:13px;color:var(--muted);margin-bottom:5px;font-style:italic}
+.g-def{font-size:13px;line-height:1.7;color:var(--text)}
 
-/* ============ EXAMPLE BOX ============ */
-.example-box {
-  background: white; border: 1px solid var(--border);
-  border-radius: 14px; padding: 26px; margin: 24px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-}
-.example-header {
-  display: flex; align-items: center; gap: 12px;
-  padding-bottom: 16px; margin-bottom: 20px;
-  border-bottom: 2px dashed var(--border);
-}
-.example-num {
-  background: var(--primary-accent); color: white;
-  padding: 6px 14px; border-radius: 8px;
-  font-weight: 900; font-size: 14px;
-}
-.example-header h4 {
-  font-size: 18px; color: var(--primary-dark); font-weight: 900;
-}
-.example-scenario {
-  background: var(--bg-cream); padding: 14px 18px;
-  border-radius: 8px; margin-bottom: 16px;
-  font-size: 15px; line-height: 1.7;
-}
-.example-scenario strong { color: var(--primary-accent); }
-.example-result {
-  background: #f0f9f4; border-right: 3px solid var(--success);
-  padding: 14px 18px; border-radius: 8px; margin-top: 16px;
-  font-size: 15px; line-height: 1.7; color: var(--primary-dark);
-}
+.quiz{background:#fff;border-radius:13px;padding:26px;margin:26px 0;border:1px solid var(--border)}
+.quiz h4{font-size:20px;color:var(--dark);margin-bottom:18px;font-weight:900;display:flex;align-items:center;gap:8px}
+.quiz-q{background:var(--cream);padding:14px 18px;border-radius:9px;margin:10px 0;border-right:3px solid var(--gold);font-size:15px;line-height:1.8}
+.quiz-q b{color:var(--gold);margin-left:8px}
 
-.prompt-code {
-  background: #1a2847; color: #e6c887;
-  padding: 20px 24px; border-radius: 10px;
-  font-family: 'Courier New', monospace; font-size: 15px;
-  line-height: 1.9; margin: 16px 0; direction: ltr;
-  text-align: left; border-right: 4px solid var(--primary-accent);
-  white-space: pre-wrap;
-}
-.prompt-code .tag { color: #f39c12; font-weight: 900; }
-.prompt-code .content { color: #ecf0f1; }
+.hw{background:linear-gradient(135deg,#fdf8ec,#f8edce);border:2px solid var(--gold);border-radius:13px;padding:28px;margin:28px 0}
+.hw h4{font-size:20px;color:var(--dark);margin-bottom:18px;font-weight:900;display:flex;align-items:center;gap:8px}
+.hw-list{list-style:none}
+.hw-list li{padding:11px 0 11px 0;padding-right:34px;position:relative;font-size:15px;line-height:1.8;border-bottom:1px dashed var(--border)}
+.hw-list li:last-child{border-bottom:none}
+.hw-list li::before{content:'';position:absolute;right:0;top:11px;font-size:18px;color:var(--gold)}
 
-/* ============ TRAINING BOX ============ */
-.training-box {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
-  color: white; padding: 28px 32px; border-radius: 14px;
-  margin: 30px 0; position: relative; overflow: hidden;
-}
-.training-box::before {
-  content: ''; position: absolute; top: -50px; left: -50px;
-  width: 150px; height: 150px;
-  background: radial-gradient(circle, rgba(201,169,97,0.2), transparent);
-}
-.training-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; position: relative; z-index: 2;
-  flex-wrap: wrap; gap: 12px;
-}
-.training-header h4 {
-  font-size: 22px; font-weight: 900;
-  display: flex; align-items: center; gap: 10px;
-}
-.time-badge {
-  background: var(--primary-accent); color: white;
-  padding: 6px 16px; border-radius: 20px;
-  font-weight: 700; font-size: 14px;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.training-box ol {
-  list-style: decimal; padding-right: 24px;
-  position: relative; z-index: 2;
-}
-.training-box li {
-  padding: 6px 0; font-size: 16px; line-height: 1.8;
-}
+.footer{background:linear-gradient(135deg,var(--dark),var(--blue));color:#fff;padding:44px 36px 26px;margin-top:72px}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px;margin-bottom:26px}
+.footer h5{color:var(--gold);font-size:15px;margin-bottom:14px;font-weight:900}
+.footer p,.footer a{color:rgba(255,255,255,.78);font-size:14px;line-height:1.9;text-decoration:none;display:block;transition:.3s}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;color:rgba(255,255,255,.55);font-size:13px}
+.footer-bottom .brand{color:var(--gold);font-weight:700}
 
-/* ============ GLOSSARY ============ */
-.glossary-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px; margin: 24px 0;
+@media(max-width:768px){
+.cover h1{font-size:32px}.cover-sub{font-size:17px}.toc-grid{grid-template-columns:1fr}
+.sec-num{font-size:32px;min-width:52px}.sec-head h2{font-size:22px}
+.cmp{grid-template-columns:1fr}.main{padding:28px 16px 10px}
+.term{flex-direction:column;gap:6px}.term-n{min-width:auto}
 }
-.glossary-item {
-  background: white; border: 1px solid var(--border);
-  border-radius: 10px; padding: 18px 20px;
-  transition: .3s;
-}
-.glossary-item:hover {
-  border-color: var(--primary-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(201,169,97,0.1);
-}
-.glossary-term {
-  color: var(--primary-accent); font-weight: 900;
-  font-size: 16px; margin-bottom: 8px;
-  display: flex; align-items: center; gap: 8px;
-}
-.glossary-ar { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; font-style: italic; }
-.glossary-def { font-size: 14px; line-height: 1.7; color: var(--text-main); }
-
-/* ============ SYMBOLS ============ */
-.symbol-row {
-  display: grid; grid-template-columns: 80px 1fr 1fr;
-  gap: 16px; padding: 16px; margin: 8px 0;
-  background: white; border-radius: 10px;
-  border: 1px solid var(--border);
-  align-items: center;
-}
-.symbol-char {
-  font-size: 32px; font-weight: 900;
-  color: var(--primary-accent); text-align: center;
-  background: var(--bg-cream); border-radius: 8px;
-  padding: 10px; font-family: 'Amiri', serif;
-}
-.symbol-name { font-weight: 900; color: var(--primary-dark); font-size: 15px; }
-.symbol-use { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-/* ============ QUIZ ============ */
-.quiz-section {
-  background: white; border-radius: 14px;
-  padding: 30px; margin: 30px 0;
-  border: 1px solid var(--border);
-}
-.quiz-section h4 {
-  font-size: 22px; color: var(--primary-dark);
-  margin-bottom: 20px; font-weight: 900;
-  display: flex; align-items: center; gap: 10px;
-}
-.quiz-q {
-  background: var(--bg-cream); padding: 16px 20px;
-  border-radius: 10px; margin: 12px 0;
-  border-right: 3px solid var(--primary-accent);
-  font-size: 16px; line-height: 1.8;
-}
-.quiz-q-num {
-  color: var(--primary-accent); font-weight: 900;
-  margin-left: 10px;
-}
-
-/* ============ HOMEWORK ============ */
-.homework-box {
-  background: linear-gradient(135deg, #fdf8ec 0%, #f8edce 100%);
-  border: 2px solid var(--primary-accent);
-  border-radius: 14px; padding: 30px;
-  margin: 30px 0;
-}
-.homework-box h4 {
-  font-size: 22px; color: var(--primary-dark);
-  margin-bottom: 20px; font-weight: 900;
-  display: flex; align-items: center; gap: 10px;
-}
-.homework-list { list-style: none; }
-.homework-list li {
-  padding: 12px 0 12px 0; padding-right: 36px;
-  position: relative; font-size: 16px; line-height: 1.8;
-  border-bottom: 1px dashed var(--border);
-}
-.homework-list li:last-child { border-bottom: none; }
-.homework-list li::before {
-  content: '📋'; position: absolute; right: 0; top: 12px;
-}
-
-/* ============ FOOTER ============ */
-.site-footer {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
-  color: white; padding: 50px 40px 30px;
-  margin-top: 80px;
-}
-.footer-content {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 40px; margin-bottom: 30px;
-}
-.footer-col h5 {
-  color: var(--primary-accent); font-size: 16px;
-  margin-bottom: 16px; font-weight: 900;
-  letter-spacing: .5px;
-}
-.footer-col p, .footer-col a {
-  color: rgba(255,255,255,0.8); font-size: 15px;
-  line-height: 1.9; text-decoration: none; display: block;
-  transition: .3s;
-}
-.footer-col a:hover { color: var(--primary-accent); }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 24px; text-align: center;
-  color: rgba(255,255,255,0.6); font-size: 14px;
-}
-.footer-bottom .brand { color: var(--primary-accent); font-weight: 700; }
-
-/* ============ RESPONSIVE ============ */
-@media (max-width: 768px) {
-  .cover h1 { font-size: 36px; }
-  .cover-subtitle { font-size: 18px; }
-  .toc-list { grid-template-columns: 1fr; }
-  .section-num { font-size: 36px; min-width: 60px; }
-  .section-header-text h2 { font-size: 24px; }
-  .compare-box { grid-template-columns: 1fr; }
-  .symbol-row { grid-template-columns: 60px 1fr; }
-  .symbol-use { grid-column: 1 / -1; padding-right: 76px; }
-  .main-content { padding: 30px 20px; }
-  .term-box { flex-direction: column; gap: 8px; }
-  .term-name { min-width: auto; }
-}
-
-@media print {
-  .cover { break-after: page; }
-  .section { break-inside: avoid; }
-  .training-box, .golden-rule { break-inside: avoid; }
-}
+@media print{.cover{break-after:page}.sec{break-inside:avoid}.drill,.golden{break-inside:avoid}}
 </style>
 </head>
 <body>
 
-<!-- ============ 01 · COVER ============ -->
-<section class="cover" id="sec-01">
-  <div class="cover-content">
-    <div class="cover-meta">
-      <span>Sunshine T Academy</span>
-      <span class="dot"></span>
-      <span>AI Automation for Professionals</span>
-      <span class="dot"></span>
-      <span>المحاضرة ١ من ٦</span>
-    </div>
-
-    <span class="cover-tag">الأساس الذي يُبنى عليه كل شيء</span>
-
-    <h1>فهم الـ AI <span class="accent">صح</span><br>قبل ما تستخدمه في شغلك</h1>
-
-    <p class="cover-subtitle">
-      من الموظف اللي بيكتب إيميلات متكررة يومياً، للمحترف اللي بيخلي الذكاء الاصطناعي يشتغل بدقته —
-      المحاضرة دي هتغير طريقة تفكيرك في أدوات الـ AI للأبد.
-    </p>
-
-    <div class="cover-info-grid">
-      <div class="info-card-mini">
-        <div class="label">المدة</div>
-        <div class="value">⏱ ساعتان</div>
-      </div>
-      <div class="info-card-mini">
-        <div class="label">المستوى</div>
-        <div class="value">مبتدئ</div>
-      </div>
-      <div class="info-card-mini">
-        <div class="label">الأدوات</div>
-        <div class="value">Claude AI</div>
-      </div>
-      <div class="info-card-mini">
-        <div class="label">التخصص</div>
-        <div class="value">موظفي الشركات</div>
-      </div>
-    </div>
-
-    <div class="toc-preview">
-      <div class="toc-title">جدول المحتويات — ١٠ محاور</div>
-      <ul class="toc-list">
-        <li><span class="toc-num">٠١</span> العنوان والغلاف</li>
-        <li><span class="toc-num">٠٢</span> ليه الموضوع ده ضروري؟</li>
-        <li><span class="toc-num">٠٣</span> التعرف على واجهة الـ AI</li>
-        <li><span class="toc-num">٠٤</span> الإعدادات قبل البدء</li>
-        <li><span class="toc-num">٠٥</span> الفرق بين الأدوات</li>
-        <li><span class="toc-num">٠٦</span> بنية الـ Prompt الاحترافي</li>
-        <li><span class="toc-num">٠٧</span> المرجع السريع</li>
-        <li><span class="toc-num">٠٨</span> قاموس المصطلحات</li>
-        <li><span class="toc-num">٠٩</span> الرموز الخاصة</li>
-        <li><span class="toc-num">١٠</span> التدريب الختامي والواجب</li>
-      </ul>
-    </div>
+<section class="cover" id="s01">
+<div class="cover-inner">
+  <div class="cover-meta">
+    <span>Sunshine T Academy</span><span class="dot"></span>
+    <span>AI Automation for Professionals</span><span class="dot"></span>
+    <span>المحاضرة ١ من ٦</span>
   </div>
+  <span class="cover-badge">الأساس الذي يُبنى عليه كل شيء</span>
+  <h1>فهم الـ AI <span class="hl">صح</span><br>قبل ما تستخدمه في شغلك</h1>
+  <p class="cover-sub">من الموظف اللي بيكتب إيميلات متكررة يومياً، للمحترف اللي بيخلي الذكاء الاصطناعي يشتغل بدقته — المحاضرة دي هتغير طريقة تفكيرك في أدوات الـ AI للأبد.</p>
+
+  <div class="info-grid">
+    <div class="mini-card"><div class="lbl">المدة</div><div class="val">⏱ ساعتان</div></div>
+    <div class="mini-card"><div class="lbl">المستوى</div><div class="val">مبتدئ</div></div>
+    <div class="mini-card"><div class="lbl">الأدوات</div><div class="val">Claude AI</div></div>
+    <div class="mini-card"><div class="lbl">المدرب</div><div class="val">م. أحمد</div></div>
+  </div>
+
+  <div class="toc-box">
+    <div class="toc-title">جدول المحتويات — ١٠ محاور</div>
+    <ul class="toc-grid">
+      <li><span class="toc-n">٠١</span> الغلاف</li>
+      <li><span class="toc-n">٠٢</span> ليه الموضوع ده ضروري؟</li>
+      <li><span class="toc-n">٠٣</span> إزاي الـ AI بيفكر</li>
+      <li><span class="toc-n">٠٤</span> Hallucination + أمان البيانات</li>
+      <li><span class="toc-n">٠٥</span> الفرق بين الأدوات</li>
+      <li><span class="toc-n">٠٦</span> بنية الـ Prompt</li>
+      <li><span class="toc-n">٠</span> المرجع السريع</li>
+      <li><span class="toc-n">٠</span> قاموس المصطلحات</li>
+      <li><span class="toc-n">٠٩</span> الرموز الخاصة</li>
+      <li><span class="toc-n">١٠</span> التدريب الختامي والواجب</li>
+    </ul>
+  </div>
+</div>
 </section>
 
-<div class="main-content">
-
-  <!-- ============ 02 · MOTIVATION ============ -->
-  <section class="section" id="sec-02">
-    <div class="section-header">
-      <div class="section-num">٠٢</div>
-      <div class="section-header-text">
-        <h2>ليه الموضوع ده ضروري لموظف زيك؟</h2>
-        <div class="section-subtitle">تأسيس الدافع قبل الشرح التقني — الدقائق الأولى</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      قبل ما نفتح أي أداة AI، لازم نتفق على حاجة مهمة: <strong>الموظف في شركة مش بيستخدم الـ AI عشان "يتسلى"</strong>.
-      هو بيستخدمه عشان <strong>يوفر وقت، يقلل أخطاء، ويركّز في الشغل اللي فعلاً محتاج تفكيره</strong> —
-      مش في الإيميلات المتكررة والـ copy-paste اللي بياخدوا ساعة كل يوم.
-    </p>
-
-    <div class="golden-rule">
-      <p>
-        الذكاء الاصطناعي <strong>مش بديل للموظف</strong>، لكن الموظف اللي بيستخدم الـ AI هياخد مكان الموظف اللي مش بيستخدمه.
-        الفرق بين الاتنين: ساعة يومياً، و10 ساعات شهرياً، و120 ساعة سنوياً من وقتك الضايع.
-      </p>
-    </div>
-
-    <div class="cards-grid">
-      <div class="use-card">
-        <div class="use-card-icon">📧</div>
-        <h4>إيميلات العملاء المتكررة</h4>
-        <p>
-          نفس الرد على نفس السؤال بيوصلك 20 مرة في اليوم.
-          الـ AI ممكن يكتبهولك في 5 ثواني بدلا من 5 دقايق.
-        </p>
-      </div>
-      <div class="use-card">
-        <div class="use-card-icon">📊</div>
-        <h4>تقارير أسبوعية روتينية</h4>
-        <p>
-          كل أسبوع بتجمع بيانات من 3 مصادر وتكتب نفس التقرير.
-          Claude ممكن يطلعله من ملفك في أقل من دقيقة.
-        </p>
-      </div>
-      <div class="use-card">
-        <div class="use-card-icon">📄</div>
-        <h4>صياغة عقود ومستندات</h4>
-        <p>
-          عقود متشابهة بس بأسماء مختلفة.
-          الـ AI يولّدها من Template ويملأ البيانات تلقائياً.
-        </p>
-      </div>
-      <div class="use-card">
-        <div class="use-card-icon">📋</div>
-        <h4>تلخيص الاجتماعات</h4>
-        <p>
-          بعد كل اجتماع بتقعد نص ساعة تكتب الـ Minutes.
-          الـ AI يلخصلك الاجتماع في 4 نقاط أساسية.
-        </p>
-      </div>
-    </div>
-
-    <div class="tip-box">
-      <h5><i class="fas fa-lightbulb"></i> اسأل نفسك قبل كل مهمة</h5>
-      <p>
-        "هل لو خليت الـ AI يعمل المهمة دي، هتطلع بنفس الجودة اللي أنا بعملها؟"
-        لو الإجابة أيوه — يبقى أنت بتضيع وقتك في حاجة كان ممكن يخليها الـ AI.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ 03 · INTERFACE ============ -->
-  <section class="section" id="sec-03">
-    <div class="section-header">
-      <div class="section-num">٠٣</div>
-      <div class="section-header-text">
-        <h2>التعرف على واجهة الـ AI</h2>
-        <div class="section-subtitle">نظري + تعريفات — ١٠ إلى ١٥ دقيقة</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      أول ما بتفتح Claude أو ChatGPT بتلاقي قدامك شاشة بسيطة: مربع كتابة + زرار إرسال.
-      لكن تحت الشاشة البسيطة دي، فيه مصطلحات وأساسيات لازم تفهمها عشان تشتغل صح.
-    </p>
-
-    <div class="term-box">
-      <div class="term-name">Prompt</div>
-      <div class="term-def">
-        <strong>الطلب اللي بتكتبه للـ AI.</strong> ده مش مجرد سؤال، ده "تعليمات عمل".
-        كل ما يكون محدد، كل ما النتيجة تطلع أدق.
-        مثال: <code>"اكتبلي إيميل لعميل متأخر"</code> vs <code>"أنت موظف علاقات عملاء..."</code>
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">Token</div>
-      <div class="term-def">
-        <strong>وحدة قياس النص.</strong> تقريباً = 4 حروف إنجليزي أو كلمة عربية واحدة.
-        الـ AI بيحسب تكلفة شغله بالتوكنز.
-        لو عندك حد يومي من التوكنز، لازم تعرف توفّرهم.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">Context Window</div>
-      <div class="term-def">
-        <strong>الذاكرة القصيرة للـ AI.</strong> كم نص يقدر يقرأ في مرة واحدة.
-        Claude بيوصل لـ 200,000 توكن (حوالي 500 صفحة) — ده اللي بيميزه في الملفات الكبيرة.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">LLM</div>
-      <div class="term-def">
-        <strong>Large Language Model.</strong> النموذج اللغوي الكبير اللي شغال تحت أي أداة AI.
-        Claude 3.5 Sonnet، GPT-4، Gemini — كلها LLMs مختلفة.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">Conversation / Thread</div>
-      <div class="term-def">
-        <strong>المحادثة الواحدة.</strong> الـ AI بيتذكر كل حاجة جواها،
-        لكن أول ما تفتح محادثة جديدة — بينسى كل اللي قبلها.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">Project</div>
-      <div class="term-def">
-        <strong>مجلد ذكي في Claude.</strong> بتحط فيه تعليمات ثابتة + ملفات مرجعية،
-        وأي محادثة تفتحها جوّاه بتفتكر كل حاجة تلقائياً.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">Hallucination</div>
-      <div class="term-def">
-        <strong>"هلوسة" الـ AI.</strong> لما يختلق معلومة غير صحيحة بثقة.
-        ده سبب مهم إنك تراجع أي نتيجة مهمة قبل ما تستخدمها في شغلك.
-      </div>
-    </div>
-
-    <div class="tip-box">
-      <h5><i class="fas fa-info-circle"></i> نصيحة عملية</h5>
-      <p>
-        لو حسيت إن الـ AI بيرد عليك بإجابات مختلفة من مرة للتانية على نفس السؤال،
-        ده مش عشوائي — ده لأن الـ LLM بيعتمد على <strong>الاحتمالات</strong>.
-        الحل: زوّد التفاصيل في الـ Prompt بتاعك.
-      </p>
-    </div>
-
-    <h3 style="font-size: 22px; margin: 30px 0 16px; color: var(--primary-dark);">
-      أهم الأدوات اللي هنتعامل معاها في الكورس
-    </h3>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>الأداة</th>
-          <th>الاستخدام الأساسي</th>
-          <th>نقطة القوة</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="tool-logo">🟠 Claude AI</span></td>
-          <td>قراءة ملفات كبيرة، تعديل نصوص، كتابة ردود</td>
-          <td>دقة عالية مع البيانات + نظام Projects</td>
-        </tr>
-        <tr>
-          <td><span class="tool-logo">⚡ Power Automate</span></td>
-          <td>أتمتة المهام بين التطبيقات</td>
-          <td>مجاني مع Microsoft 365</td>
-        </tr>
-        <tr>
-          <td><span class="tool-logo">📊 Excel / OneDrive</span></td>
-          <td>تخزين ومعالجة البيانات</td>
-          <td>موجود عند أي موظف بالفعل</td>
-        </tr>
-        <tr>
-          <td><span class="tool-logo">📧 Outlook</span></td>
-          <td>تريجر للـ Flows من الإيميلات الواردة</td>
-          <td>مجاني مع Microsoft 365</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- ============ 04 · SETUP ============ -->
-  <section class="section" id="sec-04">
-    <div class="section-header">
-      <div class="section-num">٠٤</div>
-      <div class="section-header-text">
-        <h2>الإعدادات الأساسية قبل البدء</h2>
-        <div class="section-subtitle">نظري + عملي — ١٠ دقايق</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      أول قاعدة في العمل الاحترافي مع الـ AI: <strong>لا تبدأ أي مهمة قبل ما تجهّز بيئتك</strong>.
-      زي ما المحامي بيحضّر مكتبه قبل مقابلة العميل، الموظف الذكي بيجهز الـ AI قبل ما يكتب أول Prompt.
-    </p>
-
-    <div class="golden-rule">
-      <p>
-        ٩٠٪ من الموظفين بيكتبوا Prompts عامة وبيستغربوا من النتائج الضعيفة.<br>
-        الـ ١٠٪ المحترفين بيقضوا <strong>دقيقتين في الإعداد</strong> قبل ما يكتبوا أول سطر.
-      </p>
-    </div>
-
-    <h3 style="font-size: 20px; margin: 24px 0 14px; color: var(--primary-dark);">
-      خطوات الإعداد قبل أي جلسة عمل
-    </h3>
-
-    <ol class="steps-list">
-      <li>
-        <strong>اختار الأداة الصح للمهمة:</strong> ملفات طويلة = Claude، كتابة إبداعية = ChatGPT، تكامل مع Google = Gemini.
-      </li>
-      <li>
-        <strong>افتح حسابك وسجّل الدخول:</strong> تأكد إنك على الحساب الصح (مجاني أو Pro).
-      </li>
-      <li>
-        <strong>جهّز ملفاتك:</strong> لو هتشتغل على بيانات حساسة، احذف الأسماء والأرقام الشخصية الأول.
-      </li>
-      <li>
-        <strong>افتح Project مخصص للشغل:</strong> بدل الشات العادي، استخدم Projects عشان توفّر وقت وتوكنز.
-      </li>
-      <li>
-        <strong>اضبط اللغة:</strong> لو شغلك بالعربي، اكتب أول سطر في الـ Prompt: "رد عليّ بالعربية الفصحى المبسطة".
-      </li>
-    </ol>
-
-    <div class="example-box">
-      <div class="example-header">
-        <span class="example-num">مثال ١</span>
-        <h4>إعداد جلسة عمل لموظف علاقات عملاء</h4>
-      </div>
-      <div class="example-scenario">
-        <strong>السيناريو:</strong> أنت موظف في شركة كهرباء ومياه، وعندك 50 إيميل عملاء متكررة لازم ترد عليهم النهاردة.
-      </div>
-      <ol class="steps-list">
-        <li>افتح Claude على <code>claude.ai</code> وسجّل دخولك</li>
-        <li>اضغط على Projects → Create Project → سمّه: "خدمة عملاء الكهرباء"</li>
-        <li>في Instructions اكتب: "أنت موظف علاقات عملاء في شركة كهرباء ومياه، ترد بإيجابية ورسمية"</li>
-        <li>ارفع ملف <code>FAQ.pdf</code> اللي فيه الأسئلة الشائعة كمرجع</li>
-        <li>احفظ المشروع وافتح محادثة جديدة جوّاه — خلاص، كل حاجة جاهزة</li>
-      </ol>
-      <div class="example-result">
-        ✅ <strong>النتيجة:</strong> أي سؤال هتكتبه بعد كده، Claude هيرد عليه بالـ style بتاع شركتك
-        ومن غير ما تشرحله كل مرة مين أنت.
-      </div>
-    </div>
-
-    <div class="training-box">
-      <div class="training-header">
-        <h4><i class="fas fa-dumbbell"></i> تدريب ١ — جهّز بيئتك</h4>
-        <span class="time-badge"><i class="fas fa-clock"></i> ٥ دقايق</span>
-      </div>
-      <ol>
-        <li>افتح Claude وسجّل دخولك</li>
-        <li>أنشئ Project جديد باسم شركتك أو وظيفتك</li>
-        <li>اكتب 3 أسطر Instructions تصف شغلك</li>
-        <li>احفظ المشروع وافتح محادثة جوّاه</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ 05 · COMPARISON ============ -->
-  <section class="section" id="sec-05">
-    <div class="section-header">
-      <div class="section-num">٠٥</div>
-      <div class="section-header-text">
-        <h2>الفرق بين أدوات الـ AI</h2>
-        <div class="section-subtitle">نظري + عملي — ١٠ دقايق</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      في السوق فيه أكتر من 10 أدوات AI مشهورة. لكن مش كلها مناسبة لشغل الموظفين.
-      الاختيار الغلط ممكن يضيع وقتك أو يخرجلك نتائج مش دقيقة في ملفات مهمة.
-    </p>
-
-    <h3 style="font-size: 20px; margin: 24px 0 14px; color: var(--primary-dark);">
-      مقارنة عملية بين الأدوات الثلاثة الكبرى
-    </h3>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>المعيار</th>
-          <th>ChatGPT</th>
-          <th>Claude</th>
-          <th>Gemini</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>حجم الملفات</strong></td>
-          <td>محدود (128K)</td>
-          <td><span style="color: var(--success); font-weight:900;">ضخم (200K+)</span></td>
-          <td>متوسط</td>
-        </tr>
-        <tr>
-          <td><strong>الدقة مع البيانات</strong></td>
-          <td>جيدة</td>
-          <td><span style="color: var(--success); font-weight:900;">عالية جداً</span></td>
-          <td>متوسطة</td>
-        </tr>
-        <tr>
-          <td><strong>نظام Projects</strong></td>
-          <td>GPTs (محدود)</td>
-          <td><span style="color: var(--success); font-weight:900;">Projects + Skills</span></td>
-          <td>Gems</td>
-        </tr>
-        <tr>
-          <td><strong>السرعة</strong></td>
-          <td><span style="color: var(--success); font-weight:900;">سريع جداً</span></td>
-          <td>متوسط</td>
-          <td>سريع</td>
-        </tr>
-        <tr>
-          <td><strong>التكامل مع Google</strong></td>
-          <td>محدود</td>
-          <td>محدود</td>
-          <td><span style="color: var(--success); font-weight:900;">كامل</span></td>
-        </tr>
-        <tr>
-          <td><strong>السعر الشهري</strong></td>
-          <td>$20</td>
-          <td>$20</td>
-          <td>$20</td>
-        </tr>
-        <tr>
-          <td><strong>الأنسب لـ</strong></td>
-          <td>الكتابة الإبداعية، الكود</td>
-          <td>الملفات، البيانات، المشاريع</td>
-          <td>مستخدمي Google Workspace</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="warning-box">
-      <h5><i class="fas fa-exclamation-triangle"></i> خطأ شائع جداً</h5>
-      <p>
-        الموظفين بيستخدموا ChatGPT لكل حاجة — حتى قراءة ملفات Excel كبيرة.
-        النتيجة: البيانات بتتلخبط، والموديل بينسى معلومات من آخر الملف.
-        <strong>الحل:</strong> الملفات الكبيرة والبيانات الدقيقة = Claude.
-      </p>
-    </div>
-
-    <div class="example-box">
-      <div class="example-header">
-        <span class="example-num">مثال ٢</span>
-        <h4>اختيار الأداة الصح للمهمة</h4>
-      </div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>المهمة في شغلك</th>
-            <th>الأداة الأنسب</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>قراءة ملف Excel فيه 1000 صف فواتير</td>
-            <td>Claude ✅</td>
-          </tr>
-          <tr>
-            <td>كتابة بوست تسويقي إبداعي</td>
-            <td>ChatGPT ✅</td>
-          </tr>
-          <tr>
-            <td>تلخيص ملف PDF 80 صفحة</td>
-            <td>Claude ✅</td>
-          </tr>
-          <tr>
-            <td>البحث في Google Docs بتاعتك</td>
-            <td>Gemini ✅</td>
-          </tr>
-          <tr>
-            <td>استخراج بيانات من 50 إيميل</td>
-            <td>Claude ✅</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="training-box">
-      <div class="training-header">
-        <h4><i class="fas fa-dumbbell"></i> تدريب ٢ — اختار الأداة</h4>
-        <span class="time-badge"><i class="fas fa-clock"></i> ٣ دقايق</span>
-      </div>
-      <ol>
-        <li>فكّر في 3 مهام بتعملها أسبوعياً في شغلك</li>
-        <li>لكل مهمة، حدد الأداة الأنسب بناءً على الجدول</li>
-        <li>اكتبها جنبك في ورقة — ده هيبقى مرجعك في الكورس</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ 06 · CORE TOPIC ============ -->
-  <section class="section" id="sec-06">
-    <div class="section-header">
-      <div class="section-num">٠٦</div>
-      <div class="section-header-text">
-        <h2>بنية الـ Prompt الاحترافي — قلب المحاضرة</h2>
-        <div class="section-subtitle">النقطة الأهم في كورس AI بالكامل — ٢٥ دقيقة</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      <strong>ليه المحور ده هو الأهم في الكورس كله؟</strong><br>
-      لأن الـ AI زي الموظف الجديد في شركتك — لو مديتله تعليمات واضحة، هينجز بدقة.
-      لو مديتله تعليمات غامضة، هيجيبلك كارثة.
-      الفرق بين الـ Prompt العادي والاحترافي = الفرق بين ساعة شغل و 5 ثواني.
-    </p>
-
-    <div class="golden-rule">
-      <p>
-        أي Prompt احترافي لازم يحتوي على <strong>٤ عناصر ثابتة</strong>:<br>
-        ١. الشخصية (Role) · ٢. السياق (Context) · ٣. المطلوب (Task) · ٤. التنسيق (Format)
-      </p>
-    </div>
-
-    <div class="compare-box">
-      <div class="compare-side wrong">
-        <span class="compare-badge">الطريقة الخاطئة</span>
-        <h4>Prompt ضعيف</h4>
-        <ul>
-          <li>"لخص لي الإيميل ده"</li>
-          <li>"اكتبلي رد للعميل"</li>
-          <li>"حلّل الملف"</li>
-          <li>النتيجة: رد عام، مشوش، غير قابل للاستخدام</li>
-        </ul>
-      </div>
-      <div class="compare-side correct">
-        <span class="compare-badge">الطريقة الصحيحة</span>
-        <h4>Prompt احترافي</h4>
-        <ul>
-          <li>شخصية محددة + سياق كامل</li>
-          <li>المطلوب واضح بالتفاصيل</li>
-          <li>التنسيق محدد (جدول/إيميل/تقرير)</li>
-          <li>النتيجة: جاهزة للاستخدام فوراً</li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 style="font-size: 20px; margin: 30px 0 16px; color: var(--primary-dark);">
-      العناصر الأربعة بالتفصيل
-    </h3>
-
-    <div class="term-box">
-      <div class="term-name">١. الشخصية (Role)</div>
-      <div class="term-def">
-        حدد للـ AI مين هو. <code>"أنت محلل بيانات"</code> · <code>"أنت موظف HR"</code> · <code>"أنت خبير مالي"</code>.
-        ده بيخلي الرد يطلع بلغة وأسلوب الشخصية دي.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">٢. السياق (Context)</div>
-      <div class="term-def">
-        الخلفية اللي الـ AI محتاج يعرفها. <code>"في شركة كهرباء ومياه"</code>،
-        <code>"العميل متأخر 15 يوم"</code>، <code>"عندنا 50 فاتورة"</code>.
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">٣. المطلوب (Task)</div>
-      <div class="term-def">
-        المهمة بالظبط، بدون لخبطة. <code>"استخرج اسم العميل ورقم العداد"</code> — مش "حلّل البيانات".
-      </div>
-    </div>
-
-    <div class="term-box">
-      <div class="term-name">٤. التنسيق (Format)</div>
-      <div class="term-def">
-        شكل الناتج النهائي. <code>"جدول من 3 خانات"</code>، <code>"إيميل من 5 أسطر"</code>، <code>"قائمة بوليت"</code>.
-      </div>
-    </div>
-
-    <div class="example-box">
-      <div class="example-header">
-        <span class="example-num">مثال ٣</span>
-        <h4>تطبيق العناصر الأربعة — موظف علاقات عملاء</h4>
-      </div>
-      <div class="example-scenario">
-        <strong>السيناريو:</strong> عميل اسمه "أحمد محمد" متأخر في دفع فاتورة رقم 1234 بقيمة 5000 جنيه من 15 يوم.
-      </div>
-
-      <p style="font-weight:900; color: var(--danger); margin: 16px 0 8px;">
-        ❌ Prompt ضعيف:
-      </p>
-      <div class="prompt-code">اكتبلي إيميل للعميل المتأخر</div>
-
-      <p style="font-weight:900; color: var(--success); margin: 16px 0 8px;">
-        ✅ Prompt احترافي:
-      </p>
-      <div class="prompt-code"><span class="tag">[الشخصية]</span> <span class="content">أنت موظف علاقات عملاء في شركة Sunshine T Academy.</span>
-<span class="tag">[السياق]</span> <span class="content">العميل اسمه أحمد محمد، متأخر في دفع الفاتورة رقم 1234 بقيمة 5000 جنيه من 15 يوم.</span>
-<span class="tag">[المطلوب]</span> <span class="content">اكتب إيميل رسمي لكن ودّي يذكره بالدفع، ويحافظ على العلاقة مع العميل.</span>
-<span class="tag">[التنسيق]</span> <span class="content">الإيميل يكون من 5-7 أسطر، بجملة تحية، وجوهر، وإغلاق مهذب.</span></div>
-
-      <div class="example-result">
-        ✅ <strong>النتيجة:</strong> إيميل احترافي جاهز للتسليم من أول مرة، بدون ما تعدّل فيه أي كلمة.
-      </div>
-    </div>
-
-    <div class="training-box">
-      <div class="training-header">
-        <h4><i class="fas fa-dumbbell"></i> تدريب ٣ — اكتب Prompt احترافي</h4>
-        <span class="time-badge"><i class="fas fa-clock"></i> ١٠ دقايق</span>
-      </div>
-      <ol>
-        <li>افتح إيميل حقيقي من شغلك (أو استخدم نموذج)</li>
-        <li>اكتب Prompt بالأربع عناصر على ورقة</li>
-        <li>جرّبه على Claude وشوف الناتج</li>
-        <li>عدّل العنصر الأضعف وجرّب تاني</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ 07 · REFERENCE ============ -->
-  <section class="section" id="sec-07">
-    <div class="section-header">
-      <div class="section-num">٠٧</div>
-      <div class="section-header-text">
-        <h2>المرجع السريع — قوالب Prompts جاهزة</h2>
-        <div class="section-subtitle">احتفظ بهذه الصفحة — ٢٠+ قالب جاهز للاستخدام</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      القوالب دي هتوفر عليك وقت التفكير في كل مرة. انسخ القالب، غيّر التفاصيل، وشغّل.
-    </p>
-
-    <h3 style="font-size: 20px; margin: 24px 0 14px; color: var(--primary-dark);">
-      أولاً: قوالب أساسية — استخدمها يومياً
-    </h3>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>القالب</th>
-          <th>الاستخدام</th>
-          <th>مثال من الشغل</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>استخرج [البيانات] من [الملف]</code></td>
-          <td>قراءة ملفات</td>
-          <td>استخرج أسماء العملاء من Excel</td>
-        </tr>
-        <tr>
-          <td><code>لخّص [النص] في [عدد] نقاط</code></td>
-          <td>تلخيص</td>
-          <td>لخّص الإيميل في 3 نقاط</td>
-        </tr>
-        <tr>
-          <td><code>اكتب [نوع المحتوى] بأسلوب [صفة]</code></td>
-          <td>كتابة</td>
-          <td>اكتب إيميل بأسلوب ودّي</td>
-        </tr>
-        <tr>
-          <td><code>قارن بين [أ] و [ب]</code></td>
-          <td>مقارنة</td>
-          <td>قارن بين العرضين</td>
-        </tr>
-        <tr>
-          <td><code>أعد صياغة [النص] بطريقة [صفة]</code></td>
-          <td>تعديل نصوص</td>
-          <td>أعد صياغة العقد بوضوح</td>
-        </tr>
-        <tr>
-          <td><code>ترجم [النص] مع الحفاظ على [صفة]</code></td>
-          <td>ترجمة</td>
-          <td>ترجم العقد مع الحفاظ على المصطلحات القانونية</td>
-        </tr>
-        <tr>
-          <td><code>راجع [النص] ودوّر على [نوع الخطأ]</code></td>
-          <td>مراجعة</td>
-          <td>راجع التقرير عن أخطاء إملائية</td>
-        </tr>
-        <tr>
-          <td><code>حوّل [البيانات] إلى [التنسيق]</code></td>
-          <td>تحويل صيغ</td>
-          <td>حوّل النص إلى جدول</td>
-        </tr>
-        <tr>
-          <td><code>اشرح [المفهوم] لشخص [المستوى]</code></td>
-          <td>شرح</td>
-          <td>اشرح الميزانية لمدير غير مالي</td>
-        </tr>
-        <tr>
-          <td><code>اقترح [عدد] أفكار لـ [موضوع]</code></td>
-          <td>توليد أفكار</td>
-          <td>اقترح 5 عناوين للتقرير</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size: 20px; margin: 30px 0 14px; color: var(--primary-dark);">
-      ثانياً: قوالب متقدمة — للمهام المعقدة
-    </h3>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>القالب</th>
-          <th>الاستخدام</th>
-          <th>مثال من الشغل</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>أنت [الشخصية] في [الشركة]. [السياق]. [المطلوب]. [التنسيق].</code></td>
-          <td>القالب الكامل</td>
-          <td>كل المهام المعقدة</td>
-        </tr>
-        <tr>
-          <td><code>حلّل [البيانات] واستخرج [معلومة]. احسب [رقم].</code></td>
-          <td>تحليل بيانات</td>
-          <td>تحليل المبيعات الشهرية</td>
-        </tr>
-        <tr>
-          <td><code>راجع [المستند] دوّر على [نوع المشكلة]. اعرضها في [التنسيق].</code></td>
-          <td>مراجعة متقدمة</td>
-          <td>مراجعة العقود</td>
-        </tr>
-        <tr>
-          <td><code>صمّم [نوع المحتوى] لـ [الجمهور] عن [الموضوع].</code></td>
-          <td>تصميم محتوى</td>
-          <td>تصميم عرض تدريبي</td>
-        </tr>
-        <tr>
-          <td><code>رتّب [العناصر] حسب [معيار].</code></td>
-          <td>ترتيب وتصنيف</td>
-          <td>ترتيب العملاء حسب الأولوية</td>
-        </tr>
-        <tr>
-          <td><code>من [الملف]، استخرج [x] و [y]. باقي البيانات سيبها.</code></td>
-          <td>استخراج آمن</td>
-          <td>استخراج الأسماء فقط</td>
-        </tr>
-        <tr>
-          <td><code>اكتب [المحتوى] بدون استخدام [قيود].</code></td>
-          <td>كتابة مقيّدة</td>
-          <td>بدون كلمات تسويقية</td>
-        </tr>
-        <tr>
-          <td><code>اعمل [المهمة] في خطوات، اعرض كل خطوة قبل ما تنتقل.</code></td>
-          <td>مهام متعددة الخطوات</td>
-          <td>معالجة فواتير</td>
-        </tr>
-        <tr>
-          <td><code>لو فيه [مشكلة محتملة]، اذكرها قبل ما تكمل.</code></td>
-          <td>التحقق من الأخطاء</td>
-          <td>التحقق من بيانات ناقصة</td>
-        </tr>
-        <tr>
-          <td><code>أعطِ [عدد] نسخ مختلفة من [المحتوى].</code></td>
-          <td>تنويع</td>
-          <td>3 نسخ من إيميل ترويجي</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- ============ 08 · GLOSSARY ============ -->
-  <section class="section" id="sec-08">
-    <div class="section-header">
-      <div class="section-num">٠٨</div>
-      <div class="section-header-text">
-        <h2>قاموس المصطلحات الأساسية</h2>
-        <div class="section-subtitle">مرجع سريع — ١٥ مصطلح لازم تعرفهم</div>
-      </div>
-    </div>
-
-    <div class="glossary-grid">
-      <div class="glossary-item">
-        <div class="glossary-term">Prompt</div>
-        <div class="glossary-ar">الطلب / التعليمات</div>
-        <div class="glossary-def">النص اللي بتكتبه للـ AI عشان يعمل مهمة معينة.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Token</div>
-        <div class="glossary-ar">وحدة قياس النص</div>
-        <div class="glossary-def">وحدة حساب حجم النص (كلمة أو جزء منها). بيحسب بيها التكلفة.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">LLM</div>
-        <div class="glossary-ar">نموذج لغوي كبير</div>
-        <div class="glossary-def">Large Language Model — الموديل اللي شغال تحت أي أداة AI.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Context Window</div>
-        <div class="glossary-ar">نافذة السياق</div>
-        <div class="glossary-def">أقصى حجم نص الـ AI يقدر يقرأه في محادثة واحدة.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Hallucination</div>
-        <div class="glossary-ar">هلوسة</div>
-        <div class="glossary-def">لما الـ AI يختلق معلومة غير صحيحة بثقة عالية.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Prompt Engineering</div>
-        <div class="glossary-ar">هندسة الأوامر</div>
-        <div class="glossary-def">فن كتابة تعليمات فعّالة تطلع أفضل نتائج من الـ AI.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Few-Shot Prompting</div>
-        <div class="glossary-ar">التعلّم بالأمثلة</div>
-        <div class="glossary-def">إعطاء الـ AI أمثلة على الناتج المطلوب قبل ما يبدأ.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Zero-Shot</div>
-        <div class="glossary-ar">بدون أمثلة</div>
-        <div class="glossary-def">إعطاء الـ AI مهمة بدون أمثلة سابقة — بيعتمد على تدريبه العام.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Project</div>
-        <div class="glossary-ar">مشروع (Claude)</div>
-        <div class="glossary-def">مجلد فيه تعليمات ثابتة وملفات مرجعية بيفتكروا في كل محادثة.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Skill</div>
-        <div class="glossary-ar">مهارة مخصصة</div>
-        <div class="glossary-def">تعليمات داخل Project بتنفذ مهمة معينة تلقائياً.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">API</div>
-        <div class="glossary-ar">واجهة برمجية</div>
-        <div class="glossary-def">طريقة ربط أدوات AI مع Power Automate والبرامج التانية.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Temperature</div>
-        <div class="glossary-ar">درجة الإبداع</div>
-        <div class="glossary-def">إعداد بيتحكم في عشوائية الرد — 0 = دقيق، 1 = إبداعي.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Chatbot</div>
-        <div class="glossary-ar">روبوت محادثة</div>
-        <div class="glossary-def">الواجهة اللي بتكلم الـ AI من خلالها (زي Claude.ai).</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Knowledge Base</div>
-        <div class="glossary-ar">قاعدة معرفة</div>
-        <div class="glossary-def">ملفات مرفوعة في Project عشان الـ AI يرجعلها.</div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">Fine-Tuning</div>
-        <div class="glossary-ar">ضبط دقيق</div>
-        <div class="glossary-def">تدريب الموديل على بياناتك الخاصة — متاح في النسخ المتقدمة.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 09 · SYMBOLS ============ -->
-  <section class="section" id="sec-09">
-    <div class="section-header">
-      <div class="section-num">٠٩</div>
-      <div class="section-header-text">
-        <h2>الرموز والإشارات الخاصة</h2>
-        <div class="section-subtitle">علامات التنسيق اللي بتفرق في الـ Prompts</div>
-      </div>
-    </div>
-
-    <p class="intro-text">
-      الـ AI بيفهم رموز معينة بتساعده يفهم بنية الـ Prompt بشكل أفضل.
-      استخدام الرموز دي بيخلي النتائج أدق بكتير.
-    </p>
-
-    <h3 style="font-size: 20px; margin: 24px 0 14px; color: var(--primary-dark);">
-      رموز التنسيق الأساسية
-    </h3>
-
-    <div class="symbol-row">
-      <div class="symbol-char">"""</div>
-      <div>
-        <div class="symbol-name">علامات التنصيص الثلاثية</div>
-        <div class="symbol-use">لتحديد نص كبير أو ملف كامل جوا الـ Prompt</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code>حلّل النص التالي: """[النص]"""</code></div>
-      </div>
-    </div>
-
-    <div class="symbol-row">
-      <div class="symbol-char">[ ]</div>
-      <div>
-        <div class="symbol-name">الأقواس المربعة</div>
-        <div class="symbol-use">لتسمية متغير أو عنصر هيتغير</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code>اكتب إيميل للعميل [الاسم] عن [الموضوع]</code></div>
-      </div>
-    </div>
-
-    <div class="symbol-row">
-      <div class="symbol-char">#</div>
-      <div>
-        <div class="symbol-name">علامة الشباك</div>
-        <div class="symbol-use">لتحديد العناوين والفصول داخل النص</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code># الفصل الأول — المقدمة</code></div>
-      </div>
-    </div>
-
-    <div class="symbol-row">
-      <div class="symbol-char">-</div>
-      <div>
-        <div class="symbol-name">الشرطة / البوليت</div>
-        <div class="symbol-use">لعمل قوائم منظمة داخل الـ Prompt</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code>المطلوب: - استخراج الاسم - استخراج الرقم</code></div>
-      </div>
-    </div>
-
-    <div class="symbol-row">
-      <div class="symbol-char">→</div>
-      <div>
-        <div class="symbol-name">السهم</div>
-        <div class="symbol-use">لتحديد التحول أو التحويل</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code>حوّل النص العربي → إنجليزي رسمي</code></div>
-      </div>
-    </div>
-
-    <div class="symbol-row">
-      <div class="symbol-char">&lt; &gt;</div>
-      <div>
-        <div class="symbol-name">الأقواس الزاوية</div>
-        <div class="symbol-use">لتسمية الأقسام في Prompts متقدمة</div>
-      </div>
-      <div>
-        <div class="symbol-name">الاستخدام</div>
-        <div class="symbol-use"><code>&lt;role&gt;أنت محاسب&lt;/role&gt;</code></div>
-      </div>
-    </div>
-
-    <h3 style="font-size: 20px; margin: 30px 0 14px; color: var(--primary-dark);">
-      ٣ طرق لاستخدام الرموز بفعالية
-    </h3>
-
-    <ol class="steps-list">
-      <li>
-        <strong>استخدم علامات التنصيص الثلاثية</strong> لما تدي الـ AI نص طويل (عقد، مقال، تقرير) — ده بيخليه يفهم إن ده نص مفصول عن التعليمات.
-      </li>
-      <li>
-        <strong>استخدم الأقواس المربعة</strong> لأي جزء هيتغير من Prompt للتاني — ده بيسهل عليك عمل Templates متكررة.
-      </li>
-      <li>
-        <strong>استخدم البوليت (-)</strong> لتنظيم المطلوب في نقاط — الـ AI بيفهم القوائم أسرع بكتير من النص المتصل.
-      </li>
-    </ol>
-
-    <div class="tip-box">
-      <h5><i class="fas fa-lightbulb"></i> نصيحة عملية</h5>
-      <p>
-        كل ما يكون الـ Prompt منظم بصرياً (عناوين + بوليت + أسطر فاضية)، كل ما الـ AI هيعالجه أسرع وأدق.
-        فكّر في الـ Prompt كأنه إيميل رسمي لزميلك — هتكتبه فوضى؟ لأ طبعاً.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ 10 · CLOSING ============ -->
-  <section class="section" id="sec-10">
-    <div class="section-header">
-      <div class="section-num">١٠</div>
-      <div class="section-header-text">
-        <h2>التدريب الختامي والواجب البيتي</h2>
-        <div class="section-subtitle">تطبيق شامل — آخر ٢٠ دقيقة من المحاضرة</div>
-      </div>
-    </div>
-
-    <div class="training-box">
-      <div class="training-header">
-        <h4><i class="fas fa-trophy"></i> تدريب ختامي — معالجة ٣ إيميلات</h4>
-        <span class="time-badge"><i class="fas fa-clock"></i> ١٥ دقيقة</span>
-      </div>
-      <ol>
-        <li>افتح Claude في Project مخصص لشغلك</li>
-        <li>اختر 3 إيميلات حقيقية من بريدك (بدون بيانات حساسة)</li>
-        <li>لكل إيميل، اكتب Prompt احترافي بالأربع عناصر</li>
-        <li>جرّب الـ 3 Prompts وشوف الفرق بين الناتج</li>
-        <li>احسب الوقت اللي وفرته مقارنة بالرد اليدوي</li>
-      </ol>
-    </div>
-
-    <div class="homework-box">
-      <h4><i class="fas fa-home"></i> الواجب البيتي — سلّميه في المحاضرة الجاية</h4>
-      <ul class="homework-list">
-        <li>
-          <strong>اجمع 3 إيميلات حقيقية</strong> من شغلك الأسبوعي (تقدر تحجب البيانات الحساسة)
-        </li>
-        <li>
-          <strong>اكتب Prompt احترافي لكل إيميل</strong> يحتوي على العناصر الأربعة كلها
-        </li>
-        <li>
-          <strong>جرّب الـ Prompts على Claude</strong> واحتفظ بلقطات شاشة من النتائج
-        </li>
-        <li>
-          <strong>احسب الوقت الموفّر</strong> في كل مهمة (دقايق × عدد مرات التكرار أسبوعياً)
-        </li>
-        <li>
-          <strong>جهّز ملف Excel</strong> من شغلك اليومي — هنستخدمه في المحاضرة الثانية
-        </li>
-      </ul>
-    </div>
-
-    <div class="quiz-section">
-      <h4><i class="fas fa-question-circle"></i> أسئلة المراجعة الذاتية — نظرية</h4>
-      <div class="quiz-q"><span class="quiz-q-num">١.</span> ما هي العناصر الأربعة لأي Prompt احترافي؟</div>
-      <div class="quiz-q"><span class="quiz-q-num">٢.</span> لماذا Claude أفضل من ChatGPT في التعامل مع ملفات Excel الكبيرة؟</div>
-      <div class="quiz-q"><span class="quiz-q-num">٣.</span> ما معنى "Hallucination" في سياق الـ AI؟</div>
-      <div class="quiz-q"><span class="quiz-q-num">٤.</span> ما الفرق بين Chat العادي والـ Project في Claude؟</div>
-      <div class="quiz-q"><span class="quiz-q-num">٥.</span> لماذا يُفضَّل استخدام الأقواس المربعة [ ] في الـ Prompts؟</div>
-    </div>
-
-    <div class="quiz-section">
-      <h4><i class="fas fa-keyboard"></i> أسئلة المراجعة الذاتية — عملية</h4>
-      <div class="quiz-q"><span class="quiz-q-num">١.</span> اكتب Prompt يستخرج أسماء العملاء من ملف Excel.</div>
-      <div class="quiz-q"><span class="quiz-q-num">٢.</span> اكتب Prompt يلخّص اجتماع في 4 نقاط رئيسية.</div>
-      <div class="quiz-q"><span class="quiz-q-num">٣.</span> اكتب Prompt يترجم عقد من العربية للإنجليزية مع الحفاظ على المصطلحات القانونية.</div>
-      <div class="quiz-q"><span class="quiz-q-num">٤.</span> اكتب Prompt يصمّم إيميل ترحيب للعملاء الجدد.</div>
-      <div class="quiz-q"><span class="quiz-q-num">٥.</span> اكتب Prompt يقارن بين عرضين سعر ويوصي بالأفضل.</div>
-    </div>
-
-    <div class="tip-box">
-      <h5><i class="fas fa-rocket"></i> استعداد للمحاضرة الجاية</h5>
-      <p>
-        في المحاضرة الثانية، هنتعامل مع <strong>Claude في الشغل الفعلي</strong>: هنرفع ملفات Excel حقيقية،
-        نعدّل فيها بيانات، ونبني Project متكامل بشغلك أنت — فجهّز ملفاتك وكن مستعد.
-      </p>
-    </div>
-  </section>
+<div class="main">
+
+<section class="sec" id="s02">
+<div class="sec-head"><div class="sec-num">٠٢</div><div><h2>ليه الموضوع ده ضروري لموظف زيك؟</h2><div class="sec-sub">تأسيس الدافع قبل الشرح التقني</div></div></div>
+
+<p class="intro">
+  قبل ما نفتح أي أداة AI، لازم نتفق على حاجة مهمة: <strong>الموظف في شركة مش بيستخدم الـ AI عشان "يتسلى"</strong>. هو بيستخدمه عشان <strong>يوفر وقت، يقلل أخطاء، ويركّز في الشغل اللي فعلاً محتاج تفكيره</strong> — مش في الإيميلات المتكررة والـ copy-paste اللي بياخدوا ساعة كل يوم.
+</p>
+
+<div class="golden">
+  <p>الذكاء الاصطناعي <strong>مش بديل للموظف</strong>، لكن الموظف اللي بيستخدم الـ AI هياخد مكان الموظف اللي مش بيستخدمه. الفرق بين الاتنين: ساعة يومياً، و10 ساعات شهرياً، و120 ساعة سنوياً من وقتك الضايع.</p>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-icon">📧</div>
+    <h4>إيميلات العملاء المتكررة</h4>
+    <p>نفس الرد على نفس السؤال بيوصلك 20 مرة في اليوم. الـ AI ممكن يكتبهولك في 5 ثواني بدلا من 5 دقايق.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <h4>تقارير أسبوعية روتينية</h4>
+    <p>كل أسبوع بتجمع بيانات من 3 مصادر وتكتب نفس التقرير. Claude ممكن يطلعله من ملفك في أقل من دقيقة.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📄</div>
+    <h4>صياغة عقود ومستندات</h4>
+    <p>عقود متشابهة بس بأسماء مختلفة. الـ AI يولّدها من Template ويملأ البيانات تلقائياً.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">📋</div>
+    <h4>تلخيص الاجتماعات</h4>
+    <p>بعد كل اجتماع بتقعد نص ساعة تكتب الـ Minutes. الـ AI يلخصلك الاجتماع في 4 نقاط أساسية.</p>
+  </div>
+</div>
+
+<div class="box box-tip">
+  <h5><i class="fas fa-lightbulb"></i> اسأل نفسك قبل كل مهمة</h5>
+  <p>"هل لو خليت الـ AI يعمل المهمة دي، هتطلع بنفس الجودة اللي أنا بعملها؟" لو الإجابة أيوه — يبقى أنت بتضيع وقتك في حاجة كان ممكن يخليها الـ AI.</p>
+</div>
+</section>
+
+<section class="sec" id="s03">
+<div class="sec-head"><div class="sec-num">٣</div><div><h2>إزاي الـ AI بيفكر؟</h2><div class="sec-sub">نظري + تعريفات — ١٥ دقيقة</div></div></div>
+
+<p class="intro">
+  أول ما بتفتح Claude أو ChatGPT بتلاقي قدامك شاشة بسيطة: مربع كتابة + زرار إرسال. لكن تحت الشاشة البسيطة دي، فيه مصطلحات وأساسيات لازم تفهمها عشان تشتغل صح.
+</p>
+
+<div class="term">
+  <div class="term-n">Prompt</div>
+  <div class="term-d">
+    <strong>الطلب اللي بتكتبه للـ AI.</strong> ده مش مجرد سؤال، ده "تعليمات عمل". كل ما يكون محدد، كل ما النتيجة تطلع أدق.
+    مثال: <code>"اكتبلي إيميل لعميل متأخر"</code> vs <code>"أنت موظف علاقات عملاء..."</code>
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">Token</div>
+  <div class="term-d">
+    <strong>وحدة قياس النص.</strong> تقريباً = 4 حروف إنجليزي أو كلمة عربية واحدة. الـ AI بيحسب تكلفة شغله بالتوكنز.
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">Context Window</div>
+  <div class="term-d">
+    <strong>الذاكرة القصيرة للـ AI.</strong> كم نص يقدر يقرأ في مرة واحدة. Claude بيوصل لـ 200,000 توكن (حوالي 500 صفحة).
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">LLM</div>
+  <div class="term-d">
+    <strong>Large Language Model.</strong> النموذج اللغوي الكبير اللي شغال تحت أي أداة AI. Claude 3.5 Sonnet، GPT-4، Gemini — كلها LLMs مختلفة.
+  </div>
+</div>
+
+<div class="box box-info">
+  <h5><i class="fas fa-info-circle"></i> نصيحة عملية</h5>
+  <p>لو حسيت إن الـ AI بيرد عليك بإجابات مختلفة من مرة للتانية على نفس السؤال، ده مش عشوائي — ده لأن الـ LLM بيعتمد على <strong>الاحتمالات</strong>. الحل: زوّد التفاصيل في الـ Prompt بتاعك.</p>
+</div>
+</section>
+
+<section class="sec" id="s04">
+<div class="sec-head"><div class="sec-num">٠٤</div><div><h2>⚠️ Hallucination + أمان البيانات</h2><div class="sec-sub">مفاهيم حرجة لازم تعرفها — ١٠ دقايق</div></div></div>
+
+<p class="intro">
+  قبل ما نكمل، لازم تعرف حاجتين مهمتين جداً: الـ AI ممكن يختلق معلومات، ولازم تحمي بياناتك الحساسة.
+</p>
+
+<div class="box box-warn">
+  <h5><i class="fas fa-exclamation-triangle"></i> Hallucination — هلوسة الـ AI</h5>
+  <p>
+    لما الـ AI يفتقر لمعلومة، ممكن "يخترع" إجابة تبدو صحيحة لكنها غير دقيقة.<br><br>
+    <strong>مثال:</strong> تسأله "كام سعر كورس AI في Sunshine Academy؟"<br>
+    لو ماعندوش المعلومة، ممكن يقولك "1500 جنيه" وهو غلط — السعر الحقيقي 1800 جنيه.<br><br>
+    <strong>الحل:</strong> دايماً راجع المعلومات المهمة من مصادر رسمية.
+  </p>
+</div>
+
+<div class="box box-security">
+  <h5><i class="fas fa-shield-alt"></i> 🔒 قاعدة أمان البيانات</h5>
+  <p>
+    <strong>❌ مترفعش:</strong><br>
+    - أرقام بطاقات ائتمان<br>
+    - بيانات شخصية (أرقام تليفونات، عناوين)<br>
+    - معلومات سرية للشركة<br>
+    - كلمات مرور أو بيانات دخول<br><br>
+    <strong>✅ ارفع:</strong><br>
+    - بيانات تجريبية<br>
+    - ملفات بعد حذف المعلومات الحساسة<br>
+    - قوالب ونماذج فاضية
+  </p>
+</div>
+
+<div class="golden">
+  <p>الـ AI أداة قوية، لكن مش معصوم. استخدمه بذكاء، وراجع المعلومات المهمة، واحمي بياناتك دايماً.</p>
+</div>
+</section>
+
+<section class="sec" id="s05">
+<div class="sec-head"><div class="sec-num">٠٥</div><div><h2>الفرق بين الأدوات وليه Claude</h2><div class="sec-sub">نظري + عملي — ١٠ دقايق</div></div></div>
+
+<p class="intro">
+  في السوق فيه أكتر من أداة: ChatGPT للاستخدام العام، Gemini مرتبط بمنتجات جوجل، وClaude. إحنا هنشتغل بـ Claude في الكورس ده تحديداً، وعايزك تعرف ليه.
+</p>
+
+<table class="tbl">
+<thead><tr><th>الأداة</th><th>الميزة</th><th>العيب</th><th>الأنسب لـ</th></tr></thead>
+<tbody>
+<tr><td><strong>ChatGPT</strong></td><td>سريع، جيد في المحادثات العامة</td><td>يفقد التفاصيل في الملفات الطويلة</td><td>محادثات عامة، كتابة إبداعية</td></tr>
+<tr style="background:#fffbea;"><td><strong>Claude</strong> ⭐</td><td>دقيق جداً مع الملفات، يحفظ السياق</td><td>أبطأ شوية في الرد</td><td>ملفات طويلة، تحليل بيانات</td></tr>
+<tr><td><strong>Gemini</strong></td><td>مجاني، متصل بـ Google</td><td>أقل دقة في المهام المعقدة</td><td>تكامل مع Google Workspace</td></tr>
+</tbody>
+</table>
+
+<div class="box box-info">
+  <h5><i class="fas fa-star"></i> ليه Claude بالتحديد؟</h5>
+  <p>
+    1. Claude بيتميّز في <strong>قراءة الملفات الكبيرة</strong> بدقة عالية<br>
+    2. بيحافظ على <strong>البيانات الأصلية</strong> ولا يغيّرها إلا لو طلبت بالظبط<br>
+    3. عنده نظام <strong>Projects</strong> بيخليك تثبّت تعليمات ثابتة لشغلك مرة واحدة
+  </p>
+</div>
+
+<div class="box box-security">
+  <h5><i class="fas fa-credit-card"></i> Claude المجاني vs المدفوع</h5>
+  <p>
+    <strong>المجاني:</strong><br>
+    - عدد رسائل محدود يومياً (حوالي 20-30 رسالة)<br>
+    - حجم ملفات حتى ~10MB<br>
+    - مناسب للتعلم والتجربة<br><br>
+    <strong>المدفوع (Pro - $20/شهر):</strong><br>
+    - رسائل غير محدودة تقريباً<br>
+    - حجم ملفات حتى ~50MB<br>
+    - مناسب للاستخدام المهني اليومي<br><br>
+    💡 <strong>نصيحة:</strong> ابدأ بالمجاني، ولو احتجت أكتر انتقل للمدفوع.
+  </p>
+</div>
+</section>
+
+<section class="sec" id="s06">
+<div class="sec-head"><div class="sec-num">٠٦</div><div><h2>بنية الـ Prompt الاحترافي</h2><div class="sec-sub">النقطة الأهم في المحاضرة — ٢٠ دقيقة</div></div></div>
+
+<p class="intro">
+  <strong>ليه المحور ده هو الأهم في الكورس كله؟</strong> لأن الـ AI زي الموظف الجديد في شركتك — لو مديتله تعليمات واضحة، هينجز بدقة. لو مديتله تعليمات غامضة، هيجيبلك كارثة.
+</p>
+
+<div class="golden">
+  <p>أي Prompt احترافي لازم يحتوي على <strong>٤ عناصر ثابتة</strong>:<br>
+  ١. الشخصية (Role) · ٢. السياق (Context) · ٣. المطلوب (Task) · ٤. التنسيق (Format)</p>
+</div>
+
+<div class="cmp">
+  <div class="cmp-side no">
+    <span class="cmp-badge">الطريقة الخاطئة</span>
+    <h4>Prompt ضعيف</h4>
+    <ul>
+      <li>"لخص لي الإيميل ده"</li>
+      <li>"اكتبلي رد للعميل"</li>
+      <li>"حلّل الملف"</li>
+      <li>النتيجة: رد عام، مشوش، غير قابل للاستخدام</li>
+    </ul>
+  </div>
+  <div class="cmp-side ok">
+    <span class="cmp-badge">الطريقة الصحيحة</span>
+    <h4>Prompt احترافي</h4>
+    <ul>
+      <li>شخصية محددة + سياق كامل</li>
+      <li>المطلوب واضح بالتفاصيل</li>
+      <li>التنسيق محدد (جدول/إيميل/تقرير)</li>
+      <li>النتيجة: جاهزة للاستخدام فوراً</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-head"><span class="ex-tag">مثال ١</span><h4>تطبيق العناصر الأربعة — موظف علاقات عملاء</h4></div>
+  <div class="ex-scene"><strong>السيناريو:</strong> عميل اسمه "أحمد محمد" متأخر في دفع فاتورة رقم 1234 بقيمة 5000 جنيه من 15 يوم.</div>
+
+  <p style="font-weight:900;color:var(--danger);margin:16px 0 8px;">❌ Prompt ضعيف:</p>
+  <div class="sandbox"><span class="c">اكتبلي إيميل للعميل المتأخر</span><button class="sandbox-copy" onclick="navigator.clipboard.writeText('اكتبلي إيميل للعميل المتأخر')">نسخ</button></div>
+
+  <p style="font-weight:900;color:var(--success);margin:16px 0 8px;">✅ Prompt احترافي:</p>
+  <div class="sandbox"><span class="tag">[الشخصية]</span> <span class="c">أنت موظف علاقات عملاء في شركة Sunshine T Academy.</span>
+<span class="tag">[السياق]</span> <span class="c">العميل اسمه أحمد محمد، متأخر في دفع الفاتورة رقم 1234 بقيمة 5000 جنيه من 15 يوم.</span>
+<span class="tag">[المطلوب]</span> <span class="c">اكتب إيميل رسمي لكن ودّي يذكره بالدفع، ويحافظ على العلاقة مع العميل.</span>
+<span class="tag">[التنسيق]</span> <span class="c">الإيميل يكون من 5-7 أسطر، بجملة تحية، وجوهر، وإغلاق مهذب.</span><button class="sandbox-copy" onclick="navigator.clipboard.writeText('أنت موظف علاقات عملاء في شركة Sunshine T Academy.\nالعميل اسمه أحمد محمد، متأخر في دفع الفاتورة رقم 1234 بقيمة 5000 جنيه من 15 يوم.\nاكتب إيميل رسمي لكن ودّي يذكره بالدفع، ويحافظ على العلاقة مع العميل.\nالإيميل يكون من 5-7 أسطر، بجملة تحية، وجوهر، وإغلاق مهذب.')">نسخ</button></div>
+
+  <div class="ex-result">✅ <strong>النتيجة:</strong> إيميل احترافي جاهز للتسليم من أول مرة، بدون ما تعدّل فيه أي كلمة.</div>
+</div>
+</section>
+
+<section class="sec" id="s07">
+<div class="sec-head"><div class="sec-num">٠٧</div><div><h2>المرجع السريع — قوالب Prompts جاهزة</h2><div class="sec-sub">احتفظ بهذه الصفحة — ٢٠+ قالب جاهز</div></div></div>
+
+<p class="intro">القوالب دي هتوفر عليك وقت التفكير في كل مرة. انسخ القالب، غيّر التفاصيل، وشغّل.</p>
+
+<h3 style="font-size:20px;margin:24px 0 14px;color:var(--dark)">أولاً: قوالب أساسية</h3>
+<table class="tbl">
+<thead><tr><th>القالب</th><th>الاستخدام</th><th>مثال من الشغل</th></tr></thead>
+<tbody>
+<tr><td><code>استخرج [البيانات] من [الملف]</code></td><td>قراءة ملفات</td><td>استخرج أسماء العملاء من Excel</td></tr>
+<tr><td><code>لخّص [النص] في [عدد] نقاط</code></td><td>تلخيص</td><td>لخّص الإيميل في 3 نقاط</td></tr>
+<tr><td><code>اكتب [نوع المحتوى] بأسلوب [صفة]</code></td><td>كتابة</td><td>اكتب إيميل بأسلوب ودّي</td></tr>
+<tr><td><code>قارن بين [أ] و [ب]</code></td><td>مقارنة</td><td>قارن بين العرضين</td></tr>
+<tr><td><code>أعد صياغة [النص] بطريقة [صفة]</code></td><td>تعديل نصوص</td><td>أعد صياغة العقد بوضوح</td></tr>
+<tr><td><code>ترجم [النص] مع الحفاظ على [صفة]</code></td><td>ترجمة</td><td>ترجم العقد مع الحفاظ على المصطلحات</td></tr>
+<tr><td><code>راجع [النص] ودوّر على [نوع الخطأ]</code></td><td>مراجعة</td><td>راجع التقرير عن أخطاء إملائية</td></tr>
+<tr><td><code>حوّل [البيانات] إلى [التنسيق]</code></td><td>تحويل صيغ</td><td>حوّل النص إلى جدول</td></tr>
+<tr><td><code>اشرح [المفهوم] لشخص [المستوى]</code></td><td>شرح</td><td>اشرح الميزانية لمدير غير مالي</td></tr>
+<tr><td><code>اقترح [عدد] أفكار لـ [موضوع]</code></td><td>توليد أفكار</td><td>اقترح 5 عناوين للتقرير</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sec" id="s08">
+<div class="sec-head"><div class="sec-num">٠٨</div><div><h2>قاموس المصطلحات</h2><div class="sec-sub">مرجع سريع — ١٥ مصطلح</div></div></div>
+
+<div class="glossary">
+  <div class="g-item"><div class="g-term">Prompt</div><div class="g-ar">الطلب / التعليمات</div><div class="g-def">النص اللي بتكتبه للـ AI عشان يعمل مهمة معينة.</div></div>
+  <div class="g-item"><div class="g-term">Token</div><div class="g-ar">وحدة قياس النص</div><div class="g-def">وحدة حساب حجم النص (كلمة أو جزء منها). بيحسب بيها التكلفة.</div></div>
+  <div class="g-item"><div class="g-term">LLM</div><div class="g-ar">نموذج لغوي كبير</div><div class="g-def">Large Language Model — الموديل اللي شغال تحت أي أداة AI.</div></div>
+  <div class="g-item"><div class="g-term">Context Window</div><div class="g-ar">نافذة السياق</div><div class="g-def">أقصى حجم نص الـ AI يقدر يقرأه في محادثة واحدة.</div></div>
+  <div class="g-item"><div class="g-term">Hallucination</div><div class="g-ar">هلوسة</div><div class="g-def">لما الـ AI يختلق معلومة غير صحيحة بثقة عالية.</div></div>
+  <div class="g-item"><div class="g-term">Prompt Engineering</div><div class="g-ar">هندسة الأوامر</div><div class="g-def">فن كتابة تعليمات فعّالة تطلع أفضل نتائج من الـ AI.</div></div>
+  <div class="g-item"><div class="g-term">Few-Shot Prompting</div><div class="g-ar">التعلّم بالأمثلة</div><div class="g-def">إعطاء الـ AI أمثلة على الناتج المطلوب قبل ما يبدأ.</div></div>
+  <div class="g-item"><div class="g-term">Zero-Shot</div><div class="g-ar">بدون أمثلة</div><div class="g-def">إعطاء الـ AI مهمة بدون أمثلة سابقة.</div></div>
+  <div class="g-item"><div class="g-term">Project</div><div class="g-ar">مشروع (Claude)</div><div class="g-def">مجلد فيه تعليمات ثابتة وملفات مرجعية.</div></div>
+  <div class="g-item"><div class="g-term">Skill</div><div class="g-ar">مهارة مخصصة</div><div class="g-def">تعليمات داخل Project بتنفذ مهمة معينة تلقائياً.</div></div>
+  <div class="g-item"><div class="g-term">API</div><div class="g-ar">واجهة برمجية</div><div class="g-def">طريقة ربط أدوات AI مع Power Automate والبرامج التانية.</div></div>
+  <div class="g-item"><div class="g-term">Temperature</div><div class="g-ar">درجة الإبداع</div><div class="g-def">إعداد بيتحكم في عشوائية الرد — 0 = دقيق، 1 = إبداعي.</div></div>
+  <div class="g-item"><div class="g-term">Chatbot</div><div class="g-ar">روبوت محادثة</div><div class="g-def">الواجهة اللي بتكلم الـ AI من خلالها.</div></div>
+  <div class="g-item"><div class="g-term">Knowledge Base</div><div class="g-ar">قاعدة معرفة</div><div class="g-def">ملفات مرفوعة في Project عشان الـ AI يرجعلها.</div></div>
+  <div class="g-item"><div class="g-term">Fine-Tuning</div><div class="g-ar">ضبط دقيق</div><div class="g-def">تدريب الموديل على بياناتك الخاصة.</div></div>
+</div>
+</section>
+
+<section class="sec" id="s09">
+<div class="sec-head"><div class="sec-num">٠٩</div><div><h2>الرموز والإشارات الخاصة</h2><div class="sec-sub">علامات التنسيق اللي بتفرق في الـ Prompts</div></div></div>
+
+<p class="intro">الـ AI بيفهم رموز معينة بتساعده يفهم بنية الـ Prompt بشكل أفضل.</p>
+
+<div class="term">
+  <div class="term-n">"""</div>
+  <div class="term-d">
+    <strong>علامات التنصيص الثلاثية.</strong> لتحديد نص كبير أو ملف كامل جوا الـ Prompt.
+    مثال: <code>حلّل النص التالي: """[النص]"""</code>
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">[ ]</div>
+  <div class="term-d">
+    <strong>الأقواس المربعة.</strong> لتحديد متغير أو عنصر هيتغير.
+    مثال: <code>اكتب إيميل للعميل [الاسم] عن [الموضوع]</code>
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">#</div>
+  <div class="term-d">
+    <strong>علامة الشباك.</strong> لتحديد العناوين والفصول داخل النص.
+    مثال: <code># الفصل الأول — المقدمة</code>
+  </div>
+</div>
+
+<div class="term">
+  <div class="term-n">-</div>
+  <div class="term-d">
+    <strong>الشرطة / البوليت.</strong> لعمل قوائم منظمة داخل الـ Prompt.
+    مثال: <code>المطلوب: - استخراج الاسم - استخراج الرقم</code>
+  </div>
+</div>
+
+<div class="box box-tip">
+  <h5><i class="fas fa-lightbulb"></i> نصيحة عملية</h5>
+  <p>كل ما يكون الـ Prompt منظم بصرياً (عناوين + بوليت + أسطر فاضية)، كل ما الـ AI هيعالجه أسرع وأدق.</p>
+</div>
+</section>
+
+<section class="sec" id="s10">
+<div class="sec-head"><div class="sec-num">٠</div><div><h2>التدريب الختامي والواجب البيتي</h2><div class="sec-sub">تطبيق شامل — آخر ١٠ دقايق</div></div></div>
+
+<div class="drill">
+  <div class="drill-head"><h4><i class="fas fa-trophy"></i> تدريب ختامي — معالجة ٣ إيميلات</h4><span class="time-badge"><i class="fas fa-clock"></i> ١٥ دقيقة</span></div>
+  <ol>
+    <li>افتح Claude في Project مخصص لشغلك</li>
+    <li>اختر 3 إيميلات حقيقية من بريدك (بدون بيانات حساسة)</li>
+    <li>لكل إيميل، اكتب Prompt احترافي بالأربع عناصر</li>
+    <li>جرّب الـ 3 Prompts وشوف الفرق بين الناتج</li>
+    <li>احسب الوقت اللي وفرته مقارنة بالرد اليدوي</li>
+  </ol>
+</div>
+
+<div class="hw">
+  <h4><i class="fas fa-home"></i> الواجب البيتي — سلّميه في المحاضرة الجاية</h4>
+  <ul class="hw-list">
+    <li>اجمع 3 إيميلات حقيقية من شغلك (تقدر تحجب البيانات الحساسة)</li>
+    <li>اكتب Prompt احترافي لكل إيميل يحتوي على العناصر الأربعة كلها</li>
+    <li>جرّب الـ Prompts على Claude واحتفظ بلقطات شاشة من النتائج</li>
+    <li>احسب الوقت الموفّر في كل مهمة (دقايق × عدد مرات التكرار أسبوعياً)</li>
+    <li>جهّز ملف Excel من شغلك اليومي — هنستخدمه في المحاضرة الثانية</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4><i class="fas fa-question-circle"></i> أسئلة المراجعة الذاتية — نظرية</h4>
+  <div class="quiz-q"><b>١.</b> ما هي العناصر الأربعة لأي Prompt احترافي؟</div>
+  <div class="quiz-q"><b>٢.</b> لماذا Claude أفضل من ChatGPT في التعامل مع ملفات Excel الكبيرة؟</div>
+  <div class="quiz-q"><b>٣.</b> ما معنى "Hallucination" في سياق الـ AI؟</div>
+  <div class="quiz-q"><b>٤.</b> ما الفرق بين Chat العادي والـ Project في Claude؟</div>
+  <div class="quiz-q"><b>٥.</b> لماذا يُفضَّل استخدام الأقواس المربعة [ ] في الـ Prompts؟</div>
+</div>
+
+<div class="quiz">
+  <h4><i class="fas fa-keyboard"></i> أسئلة المراجعة الذاتية — عملية</h4>
+  <div class="quiz-q"><b>١.</b> اكتب Prompt يستخرج أسماء العملاء من ملف Excel.</div>
+  <div class="quiz-q"><b>٢.</b> اكتب Prompt يلخّص اجتماع في 4 نقاط رئيسية.</div>
+  <div class="quiz-q"><b>٣.</b> اكتب Prompt يترجم عقد من العربية للإنجليزية مع الحفاظ على المصطلحات القانونية.</div>
+  <div class="quiz-q"><b>٤.</b> اكتب Prompt يصمّم إيميل ترحيب للعملاء الجدد.</div>
+  <div class="quiz-q"><b>٥.</b> اكتب Prompt يقارن بين عرضين سعر ويوصي بالأفضل.</div>
+</div>
+
+<div class="box box-info">
+  <h5><i class="fas fa-rocket"></i> استعداد للمحاضرة الجاية</h5>
+  <p>في المحاضرة الثانية، هنتعامل مع <strong>Claude في الشغل الفعلي</strong>: هنرفع ملفات Excel حقيقية، نعدّل فيها بيانات، ونبني Project متكامل بشغلك أنت.</p>
+</div>
+</section>
 
 </div>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-col">
-      <h5>عن الأكاديمية</h5>
-      <p>
-        Sunshine T Academy — منصة تدريب متخصص في الذكاء الاصطناعي وأتمتة العمليات لموظفي الشركات.
-        كورسات عملية 100% بدون نظريات.
-      </p>
-    </div>
-    <div class="footer-col">
-      <h5>تواصل معنا</h5>
-      <a href="tel:01080680930">📞 01080680930</a>
-      <a href="#">📧 info@sunshinetacademy.com</a>
-      <a href="#">💬 WhatsApp Support</a>
-    </div>
-    <div class="footer-col">
-      <h5>الكورس الحالي</h5>
-      <p>AI Automation for Professionals</p>
-      <p>6 محاضرات · 12 ساعة · 1,800 جنيه</p>
-      <p>المدرب: محمد محب</p>
-    </div>
+<footer class="footer">
+<div class="footer-grid">
+  <div>
+    <h5>عن الأكاديمية</h5>
+    <p>Sunshine T Academy — منصة تدريب متخصص في الذكاء الاصطناعي وأتمتة العمليات لموظفي الشركات.</p>
   </div>
-  <div class="footer-bottom">
-    © 2025 <span class="brand">Sunshine T Academy</span> · جميع الحقوق محفوظة · AI Automation for Professionals · Lecture 01 / 06
+  <div>
+    <h5>تواصل معنا</h5>
+    <a href="tel:01080680930">📞 01080680930</a>
+    <a href="#">📧 info@sunshinetacademy.com</a>
+    <a href="#">💬 WhatsApp Support</a>
   </div>
+  <div>
+    <h5>الكورس الحالي</h5>
+    <p>AI Automation for Professionals</p>
+    <p>6 محاضرات · 12 ساعة · 1,800 جنيه</p>
+    <p>المدرب: م. أحمد (END \ AHMED)</p>
+  </div>
+</div>
+<div class="footer-bottom">© 2025 <span class="brand">Sunshine T Academy</span> · جميع الحقوق محفوظة · AI Automation for Professionals · Lecture 01 / 06 · م. أحمد</div>
 </footer>
 
 <script>
-// Smooth scroll for TOC links
-document.querySelectorAll('.toc-list li').forEach(item => {
+document.querySelectorAll('.toc-grid li').forEach((item,i) => {
   item.addEventListener('click', () => {
-    const index = Array.from(item.parentElement.children).indexOf(item) + 1;
-    const target = document.getElementById('sec-0' + index);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const t = document.getElementById('s0' + (i+1));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
-
-// Animate sections on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animation = 'fadeUp .6s ease';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.section').forEach(s => observer.observe(s));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.style.animation = 'fadeUp .5s ease'; });
+}, {threshold: 0.08});
+document.querySelectorAll('.sec').forEach(s => obs.observe(s));
+const style = document.createElement('style');
+style.textContent = '@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}';
+document.head.appendChild(style);
 </script>
 
 </body>
